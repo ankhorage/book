@@ -125,14 +125,14 @@ function parsePackage(
 
 /*** Resolve one declared spine reference while ignoring manifest entries without a usable target. */
 /*** Extract decoded XML metadata from the package document. */
-function textElement(document: Document, element: string, key: 'author' | 'language' | 'title') {
+function textElement(document: XmlDocument, element: string, key: 'author' | 'language' | 'title') {
   const node = document.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', element).item(0);
-  const value = node === null ? undefined : node.textContent.trim();
+  const value = node?.textContent?.trim();
   return value === undefined || value === '' ? {} : { [key]: value };
 }
 
 /*** Parse XML while rejecting malformed package metadata before it reaches import policy. */
-function xmlDocument(source: string, label: string): Document {
+function xmlDocument(source: string, label: string): XmlDocument {
   const document = new DOMParser().parseFromString(source, 'application/xml');
   if (document.getElementsByTagName('parsererror').length > 0)
     throw new Error(`${label} is invalid XML.`);
@@ -140,8 +140,24 @@ function xmlDocument(source: string, label: string): Document {
 }
 
 /*** Convert xmldom's array-like result into typed XML elements. */
-function xmlElements(document: Document, name: string): readonly Element[] {
-  return Array.from(document.getElementsByTagName(name) as ArrayLike<Element>);
+function xmlElements(document: XmlDocument, name: string): readonly XmlElement[] {
+  return Array.from(document.getElementsByTagName(name) as ArrayLike<XmlElement>);
+}
+
+interface XmlDocument {
+  readonly getElementsByTagName: (name: string) => {
+    readonly length: number;
+    item(index: number): XmlElement | null;
+  };
+  readonly getElementsByTagNameNS: (
+    namespace: string,
+    name: string,
+  ) => { item(index: number): XmlElement | null };
+}
+
+interface XmlElement {
+  readonly getAttribute: (name: string) => string | null;
+  readonly textContent: string | null;
 }
 
 /*** Resolve an OPF-relative archive path without allowing traversal outside the EPUB. */
