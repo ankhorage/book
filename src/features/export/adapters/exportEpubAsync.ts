@@ -3,6 +3,7 @@ import { writeFile } from 'node:fs/promises';
 import { BlobWriter, TextReader, ZipWriter } from '@zip.js/zip.js';
 
 import type { BookProject } from '../../../types/book.js';
+import { renderMarkdownAsXhtml } from './renderMarkdownAsXhtml.js';
 
 /*** Generate a reflowable EPUB 3 archive with navigation, spine, and semantic chapter XHTML. */
 export async function exportEpubAsync(input: {
@@ -45,18 +46,9 @@ function navigation(project: BookProject): string {
   return `<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="${escape(project.metadata.language)}"><head><title>Contents</title></head><body><nav epub:type="toc" xmlns:epub="http://www.idpf.org/2007/ops"><ol>${project.chapters.map((chapter) => `<li><a href="${chapter.id}.xhtml">${escape(chapter.title)}</a></li>`).join('')}</ol></nav></body></html>`;
 }
 
-/*** Render intentionally small semantic Markdown subset to safe XHTML. */
+/*** Render semantic Markdown through an AST instead of flattening every block into paragraphs. */
 function xhtml(title: string, markdown: string): string {
-  const body = markdown
-    .split(/\n{2,}/u)
-    .map((block) =>
-      block.startsWith('# ')
-        ? `<h1>${escape(block.slice(2))}</h1>`
-        : block.startsWith('## ')
-          ? `<h2>${escape(block.slice(3))}</h2>`
-          : `<p>${escape(block).replace(/\n/gu, '<br/>')}</p>`,
-    )
-    .join('\n');
+  const body = renderMarkdownAsXhtml(markdown);
   return `<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head><meta charset="utf-8"/><title>${escape(title)}</title></head><body>${body}</body></html>`;
 }
 

@@ -33,6 +33,7 @@ export async function importBookAsync(input: {
     project: imported.project,
     chapters: imported.chapters,
     report: imported.report,
+    force: input.force,
   });
   return outputDirectory;
 }

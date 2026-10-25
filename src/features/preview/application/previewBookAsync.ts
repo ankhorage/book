@@ -1,5 +1,8 @@
 import { watch } from 'node:fs';
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { exportBookAsync } from '../../export/application/exportBookAsync.js';
 
@@ -10,30 +13,52 @@ export async function previewBookAsync(input: {
   readonly write: (value: string) => void;
 }): Promise<void> {
   const directory = resolve(input.directory);
-  const temporary = join(directory, '.book-preview');
-  const rebuild = () => rebuildPreviewAsync(directory, temporary);
-  await rebuild();
-  const server = Bun.serve({
-    hostname: '127.0.0.1',
-    port: input.port,
-    fetch: async (request) => await previewResponseAsync(request, temporary),
-  });
-  const watcher = watch(directory, { recursive: true }, (_, file) => {
-    if (file !== '.book-preview')
-      void rebuild().catch((error: unknown) =>
-        input.write(`Preview rebuild failed: ${String(error)}\n`),
-      );
-  });
-  input.write(`Preview available at http://127.0.0.1:${server.port}\n`);
-  await waitForPreviewExitAsync();
-  watcher.close();
-  await server.stop();
+  const temporary = await mkdtemp(join(tmpdir(), 'ankhorage-book-preview-'));
+  try {
+    await rebuildPreviewAsync(directory, temporary);
+    const scheduleRebuild = createRebuildScheduler(directory, temporary, input.write);
+    const server = Bun.serve({
+      hostname: '127.0.0.1',
+      port: input.port,
+      fetch: async (request) => await previewResponseAsync(request, temporary),
+    });
+    const watcher = watch(directory, { recursive: true }, () => scheduleRebuild());
+    input.write(`Preview available at http://127.0.0.1:${server.port}\n`);
+    await waitForPreviewExitAsync();
+    watcher.close();
+    await server.stop();
+  } finally {
+    await rm(temporary, { force: true, recursive: true });
+  }
 }
 
-/*** Serve the preview page and its real EPUB and PDF publication artifacts. */
+/*** Serialize debounced rebuilds so one source change cannot overlap or recursively trigger another. */
+function createRebuildScheduler(
+  directory: string,
+  temporary: string,
+  write: (value: string) => void,
+) {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  let current = Promise.resolve();
+  return () => {
+    if (timer !== undefined) clearTimeout(timer);
+    timer = setTimeout(() => {
+      current = current
+        .catch(() => undefined)
+        .then(async () => await rebuildPreviewAsync(directory, temporary))
+        .catch((error: unknown) => write(`Preview rebuild failed: ${String(error)}\n`));
+    }, 120);
+  };
+}
+
+/*** Serve the preview page, EPUB reader runtime, and real publication artifacts. */
 async function previewResponseAsync(request: Request, temporary: string): Promise<Response> {
   const path = new URL(request.url).pathname;
   if (path === '/') return previewPageResponse();
+  if (path === '/epubjs.js')
+    return new Response(Bun.file(fileURLToPath(import.meta.resolve('epubjs/dist/epub.min.js'))), {
+      headers: { 'content-type': 'text/javascript; charset=utf-8' },
+    });
   const extension = path === '/book.epub' ? '.epub' : path === '/book.pdf' ? '.pdf' : null;
   if (extension === null) return new Response('Not found', { status: 404 });
   const target = join(temporary, await findOutputAsync(temporary, extension));
@@ -42,10 +67,10 @@ async function previewResponseAsync(request: Request, temporary: string): Promis
   });
 }
 
-/*** Render the loopback-only preview shell. */
+/*** Render a loopback-only reader that loads the generated EPUB, alongside the native PDF preview. */
 function previewPageResponse(): Response {
   return new Response(
-    '<!doctype html><title>Book preview</title><h1>Book preview</h1><p><a href="/book.epub">EPUB output</a></p><embed src="/book.pdf" type="application/pdf" width="100%" height="900"/>',
+    '<!doctype html><title>Book preview</title><h1>Book preview</h1><main id="epub-reader" style="height:900px"></main><h2>PDF</h2><embed src="/book.pdf" type="application/pdf" width="100%" height="900"/><script src="/epubjs.js"></script><script>ePub("/book.epub").renderTo("epub-reader", { width: "100%", height: 900 }).display()</script>',
     { headers: { 'content-type': 'text/html; charset=utf-8' } },
   );
 }
@@ -67,7 +92,10 @@ async function rebuildPreviewAsync(directory: string, temporary: string): Promis
   });
 }
 
-/*** Hold the process open until the interactive preview receives an interrupt. */
+/*** Hold the process open until the interactive preview receives an interrupt or termination signal. */
 async function waitForPreviewExitAsync(): Promise<void> {
-  await new Promise<void>((resolvePreview) => process.once('SIGINT', resolvePreview));
+  await Promise.race([
+    new Promise<void>((resolvePreview) => process.once('SIGINT', resolvePreview)),
+    new Promise<void>((resolvePreview) => process.once('SIGTERM', resolvePreview)),
+  ]);
 }

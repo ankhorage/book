@@ -25,5 +25,6 @@ export async function createProjectAsync(input: {
       export: { epub: { version: '3.0' }, pdf: { pageSize: 'A5' } },
     },
     chapters: new Map([['01-introduction', '# Introduction\n\nStart writing your book.\n']]),
+    force: input.force,
   });
 }

@@ -1,9 +1,10 @@
 import { readFileSync } from 'node:fs';
-import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
 import { type AnkhCommandContext, type AnkhDiscoveredPackage, runCli } from '@ankhorage/ankh';
+import { BlobReader, TextWriter, ZipReader } from '@zip.js/zip.js';
 import { afterEach, expect, test } from 'bun:test';
 
 const directories: string[] = [];
@@ -73,6 +74,43 @@ test('imports generated PDF and EPUB text with explicit reconstruction warnings'
   }
 });
 
+test('rejects an import destination without force and leaves existing files unchanged', async () => {
+  const root = await temporaryDirectoryAsync();
+  await writeFile(join(root, 'source.md'), '# Replacement\n\nNew manuscript.\n', 'utf8');
+  const destination = join(root, 'existing-book');
+  await mkdir(destination);
+  await Bun.write(join(destination, 'sentinel.txt'), 'preserve this');
+  const result = await runAnkh(['book', 'import', 'source.md', '--out', 'existing-book'], root);
+
+  expect(result.result.exitCode).toBe(1);
+  expect(await Bun.file(join(destination, 'sentinel.txt')).text()).toBe('preserve this');
+  expect(await Bun.file(join(destination, 'book.yaml')).exists()).toBe(false);
+});
+
+test('exports semantic Markdown blocks as EPUB XHTML elements', async () => {
+  const root = await temporaryDirectoryAsync();
+  await writeFile(
+    join(root, 'semantic.md'),
+    '# Semantics\n\nA **strong** [reference](https://example.com).\n\n- first\n- second\n\n| Left | Right |\n| --- | --- |\n| one | two |\n',
+    'utf8',
+  );
+  expect(
+    (await runAnkh(['book', 'import', 'semantic.md', '--out', 'book'], root)).result.exitCode,
+  ).toBe(0);
+  expect(
+    (await runAnkh(['book', 'export', '--epub', '--force'], join(root, 'book'))).result.exitCode,
+  ).toBe(0);
+  const xhtml = await epubEntryTextAsync(
+    join(root, 'book', 'dist', 'semantics.epub'),
+    '01-semantics.xhtml',
+  );
+
+  expect(xhtml).toContain('<strong>strong</strong>');
+  expect(xhtml).toContain('<a href="https://example.com">reference</a>');
+  expect(xhtml).toContain('<ul>');
+  expect(xhtml).toContain('<table>');
+});
+
 test('selects formats and rejects corrupt or escaping input', async () => {
   const root = await temporaryDirectoryAsync();
   await writeFile(join(root, 'source.md'), '# Selective export\n\nText.\n', 'utf8');
@@ -140,4 +178,18 @@ async function temporaryDirectoryAsync(): Promise<string> {
   const directory = await mkdtemp(join(tmpdir(), 'ankhorage-book-'));
   directories.push(directory);
   return directory;
+}
+
+/*** Read one generated EPUB member for publication-semantics assertions. */
+async function epubEntryTextAsync(epub: string, filename: string): Promise<string> {
+  const reader = new ZipReader(new BlobReader(new Blob([await readFile(epub)])));
+  try {
+    const entry = (await reader.getEntries()).find(
+      (candidate) => candidate.filename === `EPUB/${filename}`,
+    );
+    if (entry === undefined || entry.directory) throw new Error(`Missing EPUB entry: ${filename}`);
+    return await entry.getData(new TextWriter());
+  } finally {
+    await reader.close();
+  }
 }
