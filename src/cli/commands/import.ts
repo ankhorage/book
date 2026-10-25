@@ -2,7 +2,7 @@ import { resolve } from 'node:path';
 
 import type { AnkhCommandContext } from '@ankhorage/ankh';
 
-import { importBookAsync } from '../../features/import/application/importBookAsync.js';
+import { importBook } from '../../features/import/composition/importBook.js';
 
 /*** Import an external manuscript through the `ankh book import` command. */
 export async function runImportCommandAsync(
@@ -13,7 +13,7 @@ export async function runImportCommandAsync(
   if (source === undefined || source.startsWith('-'))
     throw new Error('import requires a source file.');
   const output = readOutputDirectory(argv);
-  const directory = await importBookAsync({
+  const directory = await importBook({
     source: resolve(context.cwd, source),
     ...(output === undefined ? {} : { outputDirectory: resolve(context.cwd, output) }),
     force: argv.includes('--force'),

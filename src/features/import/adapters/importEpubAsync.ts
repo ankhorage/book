@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { basename, dirname, normalize, posix } from 'node:path';
 
+import { type Document as XmlDocument, DOMParser } from '@xmldom/xmldom';
 import { BlobReader, type Entry, type FileEntry, TextWriter, ZipReader } from '@zip.js/zip.js';
 
 import { importMarkdown } from './importMarkdownAsync.js';
@@ -67,7 +68,11 @@ function validateEntries(entries: readonly Entry[]): void {
 /*** Resolve the package document declared by the EPUB container. */
 async function readPackagePathAsync(files: ReadonlyMap<string, FileEntry>): Promise<string> {
   const container = await readTextAsync(files, 'META-INF/container.xml');
-  const path = /<rootfile\b[^>]*\bfull-path=["']([^"']+)["']/iu.exec(container)?.[1];
+  const path =
+    xmlDocument(container, 'EPUB container')
+      .getElementsByTagName('rootfile')
+      .item(0)
+      ?.getAttribute('full-path') ?? undefined;
   if (path === undefined || !files.has(path))
     throw new Error('The EPUB container has no readable package document.');
   return path;
@@ -92,46 +97,48 @@ function parsePackage(
   };
   readonly spine: readonly string[];
 } {
+  const document = xmlDocument(opf, 'EPUB package');
   const manifest = new Map(
-    [...opf.matchAll(/<item\b([^>]*)\/?>(?:<\/item>)?/giu)].flatMap((match) => {
-      const id = attribute(match[1], 'id');
-      const href = attribute(match[1], 'href');
-      return id === undefined || href === undefined
-        ? []
-        : [[id, resolveEpubPath(opfPath, href)] as const];
+    Array.from(document.getElementsByTagName('item')).flatMap((item) => {
+      const id = item.getAttribute('id');
+      const href = item.getAttribute('href');
+      return id === null || href === null ? [] : [[id, resolveEpubPath(opfPath, href)] as const];
     }),
   );
-  const spine = [...opf.matchAll(/<itemref\b([^>]*)\/?>(?:<\/itemref>)?/giu)]
-    .map((match) => attribute(match[1], 'idref'))
-    .flatMap((id) => (id === undefined ? [] : resolvedSpineItem(manifest, id)));
+  const spine = Array.from(document.getElementsByTagName('itemref')).map((item) => {
+    const id = item.getAttribute('idref');
+    const path = id === null ? undefined : manifest.get(id);
+    if (path === undefined)
+      throw new Error(`EPUB spine references missing manifest item: ${id ?? '(none)'}`);
+    return path;
+  });
   if (spine.length === 0) throw new Error('The EPUB package has no readable spine.');
   return {
     metadata: {
-      ...textElement(opf, 'dc:title', 'title'),
-      ...textElement(opf, 'dc:creator', 'author'),
-      ...textElement(opf, 'dc:language', 'language'),
+      ...textElement(document, 'title', 'title'),
+      ...textElement(document, 'creator', 'author'),
+      ...textElement(document, 'language', 'language'),
     },
     spine,
   };
 }
 
 /*** Resolve one declared spine reference while ignoring manifest entries without a usable target. */
-function resolvedSpineItem(manifest: ReadonlyMap<string, string>, id: string): readonly string[] {
-  const path = manifest.get(id);
-  return path === undefined ? [] : [path];
-}
-
-/*** Extract a plain metadata element without interpreting embedded markup. */
-function textElement(source: string, element: string, key: 'author' | 'language' | 'title') {
-  const value = new RegExp(`<${element}[^>]*>([\\s\\S]*?)<\\/${element}>`, 'iu')
-    .exec(source)?.[1]
-    ?.trim();
+/*** Extract decoded XML metadata from the package document. */
+function textElement(document: XmlDocument, element: string, key: 'author' | 'language' | 'title') {
+  const value = document
+    .getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', element)
+    .item(0)
+    ?.textContent?.trim();
   return value === undefined || value === '' ? {} : { [key]: value };
 }
 
-/*** Read a quoted XML attribute from a known OPF element. */
-function attribute(source: string, name: string): string | undefined {
-  return new RegExp(`\\b${name}=["']([^"']+)["']`, 'iu').exec(source)?.[1];
+/*** Parse XML while rejecting malformed package metadata before it reaches import policy. */
+function xmlDocument(source: string, label: string): XmlDocument {
+  const document = new DOMParser().parseFromString(source, 'application/xml');
+  if (document.getElementsByTagName('parsererror').length > 0)
+    throw new Error(`${label} is invalid XML.`);
+  return document;
 }
 
 /*** Resolve an OPF-relative archive path without allowing traversal outside the EPUB. */

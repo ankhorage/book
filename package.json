@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "description": "Standalone book authoring, import, preview, and export toolkit.",
   "license": "MIT",
+  "keywords": [
+    "ankhorage",
+    "book",
+    "epub",
+    "pdf",
+    "manuscript"
+  ],
   "type": "module",
   "sideEffects": false,
   "ankh": {
@@ -125,8 +132,11 @@
   "packageManager": "bun@1.4.2",
   "devDependencies": {
     "@ankhorage/devtools": "^2.3.31",
+    "@ankhorage/paradox": "^0.3.5",
     "@types/bun": "^1.4.2",
-    "@types/react": "^19.2.3"
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.2.3",
+    "typescript": "~6.0.3"
   },
   "scripts": {
     "lint": "ankhorage-eslint . --max-warnings=0",
@@ -140,11 +150,14 @@
     "test": "bun test src",
     "prepack": "bun run build",
     "changeset": "ankhorage-changeset",
-    "changeset:status": "ankhorage-changeset status --since=origin/main"
+    "changeset:status": "ankhorage-changeset status --since=origin/main",
+    "docs": "paradox",
+    "version-packages": "ankhorage-changeset version"
   },
   "dependencies": {
     "@ankhorage/ankh": "^0.13.2",
     "@ankhorage/contracts": "^26.2.0",
+    "@xmldom/xmldom": "^0.9.12",
     "@react-pdf/renderer": "^4.3.2",
     "@zip.js/zip.js": "^2.23.0",
     "epubjs": "^0.3.93",

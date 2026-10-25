@@ -1,6 +1,6 @@
 import type { AnkhCommandContext } from '@ankhorage/ankh';
 
-import { previewBookAsync } from '../../features/preview/application/previewBookAsync.js';
+import { previewBook } from '../../features/preview/composition/previewBook.js';
 
 /*** Start a live local preview through the `ankh book preview` command. */
 export async function runPreviewCommandAsync(
@@ -10,7 +10,7 @@ export async function runPreviewCommandAsync(
   const port = Number(readPort(argv) ?? '4173');
   if (!Number.isInteger(port) || port < 1 || port > 65535)
     throw new Error('--port must be a valid TCP port.');
-  await previewBookAsync({ directory: context.cwd, port, write: context.writeStdout });
+  await previewBook({ directory: context.cwd, port, write: context.writeStdout });
   return { exitCode: 0 };
 }
 

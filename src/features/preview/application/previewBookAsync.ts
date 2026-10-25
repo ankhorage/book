@@ -4,19 +4,29 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { exportBookAsync } from '../../export/application/exportBookAsync.js';
+export interface PreviewBookPort {
+  readonly exportBook: (input: {
+    readonly directory: string;
+    readonly formats: readonly ('epub' | 'pdf')[];
+    readonly outputDirectory: string;
+    readonly force: boolean;
+  }) => Promise<readonly string[]>;
+}
 
 /*** Serve temporary actual EPUB and PDF output on loopback and rebuild after project changes. */
-export async function previewBookAsync(input: {
-  readonly directory: string;
-  readonly port: number;
-  readonly write: (value: string) => void;
-}): Promise<void> {
+export async function previewBookAsync(
+  input: {
+    readonly directory: string;
+    readonly port: number;
+    readonly write: (value: string) => void;
+  },
+  port: PreviewBookPort,
+): Promise<void> {
   const directory = resolve(input.directory);
   const temporary = await mkdtemp(join(tmpdir(), 'ankhorage-book-preview-'));
   try {
-    await rebuildPreviewAsync(directory, temporary);
-    const scheduleRebuild = createRebuildScheduler(directory, temporary, input.write);
+    await rebuildPreviewAsync(directory, temporary, port);
+    const scheduleRebuild = createRebuildScheduler(directory, temporary, input.write, port);
     const server = Bun.serve({
       hostname: '127.0.0.1',
       port: input.port,
@@ -37,6 +47,7 @@ function createRebuildScheduler(
   directory: string,
   temporary: string,
   write: (value: string) => void,
+  port: PreviewBookPort,
 ) {
   let timer: ReturnType<typeof setTimeout> | undefined;
   let current = Promise.resolve();
@@ -45,7 +56,7 @@ function createRebuildScheduler(
     timer = setTimeout(() => {
       current = current
         .catch(() => undefined)
-        .then(async () => await rebuildPreviewAsync(directory, temporary))
+        .then(async () => await rebuildPreviewAsync(directory, temporary, port))
         .catch((error: unknown) => write(`Preview rebuild failed: ${String(error)}\n`));
     }, 120);
   };
@@ -83,8 +94,12 @@ async function findOutputAsync(directory: string, extension: string): Promise<st
 }
 
 /*** Rebuild both real publication artifacts for a browser preview session. */
-async function rebuildPreviewAsync(directory: string, temporary: string): Promise<void> {
-  await exportBookAsync({
+async function rebuildPreviewAsync(
+  directory: string,
+  temporary: string,
+  port: PreviewBookPort,
+): Promise<void> {
+  await port.exportBook({
     directory,
     formats: ['epub', 'pdf'],
     outputDirectory: temporary,

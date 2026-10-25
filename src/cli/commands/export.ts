@@ -2,7 +2,7 @@ import { resolve } from 'node:path';
 
 import type { AnkhCommandContext } from '@ankhorage/ankh';
 
-import { exportBookAsync } from '../../features/export/application/exportBookAsync.js';
+import { exportBook } from '../../features/export/composition/exportBook.js';
 
 /*** Export canonical EPUB and PDF artifacts through the `ankh book export` command. */
 export async function runExportCommandAsync(
@@ -11,7 +11,7 @@ export async function runExportCommandAsync(
 ): Promise<{ readonly exitCode: number }> {
   const formats = exportFormats(argv);
   const output = readOutputDirectory(argv);
-  const targets = await exportBookAsync({
+  const targets = await exportBook({
     directory: context.cwd,
     formats,
     ...(output === undefined ? {} : { outputDirectory: resolve(context.cwd, output) }),
