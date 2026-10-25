@@ -1,4 +1,13 @@
-import { Document, Link, Page, renderToBuffer, StyleSheet, Text, View } from '@react-pdf/renderer';
+import {
+  Document,
+  Image,
+  Link,
+  Page,
+  renderToBuffer,
+  StyleSheet,
+  Text,
+  View,
+} from '@react-pdf/renderer';
 import { createElement, type ReactElement } from 'react';
 
 import type { BookProject } from '../../../types/book.js';
@@ -39,6 +48,9 @@ function createPdfDocument(input: {
       fontSize: 8,
     },
     code: { fontFamily: 'Courier', fontSize: 8, marginBottom: 8 },
+    emphasis: { fontFamily: 'Helvetica-Oblique' },
+    strong: { fontFamily: 'Helvetica-Bold' },
+    image: { maxWidth: '100%', maxHeight: 320, marginBottom: 8 },
     pageNumber: {
       position: 'absolute',
       bottom: 18,
@@ -130,35 +142,20 @@ function renderBlock(
   styles: ReturnType<typeof StyleSheet.create>,
 ): ReactElement {
   if (block.kind === 'heading')
-    return createElement(Text, { key, style: styles.heading, wrap: false }, text(block.children));
+    return createElement(
+      Text,
+      { key, style: styles.heading, wrap: false },
+      ...inlineNodes(block.children, styles),
+    );
   if (block.kind === 'paragraph')
-    return createElement(Text, { key, style: styles.paragraph }, text(block.children));
-  if (block.kind === 'list')
     return createElement(
       View,
-      { key, style: styles.list },
-      ...block.items.map((item, index) =>
-        createElement(
-          Text,
-          { key: index },
-          `${block.ordered ? `${index + 1}.` : '•'} ${text(item)}`,
-        ),
-      ),
+      { key },
+      createElement(Text, { style: styles.paragraph }, ...inlineNodes(block.children, styles)),
+      ...images(block.children, key, styles),
     );
-  if (block.kind === 'table')
-    return createElement(
-      View,
-      { key, style: styles.table },
-      ...block.rows.map((row, rowIndex) =>
-        createElement(
-          View,
-          { key: rowIndex, style: styles.tableRow, wrap: false },
-          ...row.map((cell, cellIndex) =>
-            createElement(Text, { key: cellIndex, style: styles.tableCell }, text(cell)),
-          ),
-        ),
-      ),
-    );
+  if (block.kind === 'list') return renderList(block, key, styles);
+  if (block.kind === 'table') return renderTable(block, key, styles);
   if (block.kind === 'blockquote')
     return createElement(
       View,
@@ -168,17 +165,87 @@ function renderBlock(
   return createElement(Text, { key, style: styles.code }, block.value);
 }
 
-/*** Produce readable text fallback for inline PDF content. */
-function text(inlines: readonly BookInline[]): string {
-  return inlines
-    .map((inline) =>
-      inline.kind === 'text' || inline.kind === 'code'
-        ? inline.value
-        : inline.kind === 'image'
-          ? inline.alt
-          : text(inline.children),
-    )
-    .join('');
+/*** Keep every list item together while preserving its inline semantics. */
+function renderList(
+  block: Extract<BookBlock, { readonly kind: 'list' }>,
+  key: string,
+  styles: ReturnType<typeof StyleSheet.create>,
+): ReactElement {
+  return createElement(
+    View,
+    { key, style: styles.list },
+    ...block.items.map((item, index) =>
+      createElement(
+        Text,
+        { key: index },
+        `${block.ordered ? `${index + 1}.` : '•'} `,
+        ...inlineNodes(item, styles),
+      ),
+    ),
+  );
+}
+
+/*** Keep individual table rows together while allowing a table to flow across pages. */
+function renderTable(
+  block: Extract<BookBlock, { readonly kind: 'table' }>,
+  key: string,
+  styles: ReturnType<typeof StyleSheet.create>,
+): ReactElement {
+  return createElement(
+    View,
+    { key, style: styles.table },
+    ...block.rows.map((row, rowIndex) =>
+      createElement(
+        View,
+        { key: rowIndex, style: styles.tableRow, wrap: false },
+        ...row.map((cell, cellIndex) =>
+          createElement(
+            Text,
+            { key: cellIndex, style: styles.tableCell },
+            ...inlineNodes(cell, styles),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+/*** Render formatted inline text and real PDF links from shared semantic nodes. */
+function inlineNodes(
+  inlines: readonly BookInline[],
+  styles: ReturnType<typeof StyleSheet.create>,
+): readonly (ReactElement | string)[] {
+  return inlines.reduce<readonly (ReactElement | string)[]>((nodes, inline, index) => {
+    const key = `${inline.kind}-${index}`;
+    if (inline.kind === 'text' || inline.kind === 'code') return [...nodes, inline.value];
+    if (inline.kind === 'image') return nodes;
+    const children = inlineNodes(inline.children, styles);
+    if (inline.kind === 'link')
+      return [...nodes, createElement(Link, { key, src: inline.url }, ...children)];
+    return [
+      ...nodes,
+      createElement(
+        Text,
+        { key, style: inline.kind === 'strong' ? styles.strong : styles.emphasis },
+        ...children,
+      ),
+    ];
+  }, []);
+}
+
+/*** Render image nodes as visible publication media rather than alt-text substitutes. */
+function images(
+  inlines: readonly BookInline[],
+  key: string,
+  styles: ReturnType<typeof StyleSheet.create>,
+): readonly ReactElement[] {
+  return inlines.flatMap((inline, index) =>
+    inline.kind === 'image'
+      ? [createElement(Image, { key: `${key}-${index}`, src: inline.url, style: styles.image })]
+      : 'children' in inline
+        ? images(inline.children, `${key}-${index}`, styles)
+        : [],
+  );
 }
 
 /*** Render physical page numbers on every flowing book page. */

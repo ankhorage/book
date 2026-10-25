@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { basename, dirname, normalize, posix } from 'node:path';
 
-import { type Document as XmlDocument, DOMParser } from '@xmldom/xmldom';
+import { DOMParser } from '@xmldom/xmldom';
 import { BlobReader, type Entry, type FileEntry, TextWriter, ZipReader } from '@zip.js/zip.js';
 
 import { importMarkdown } from './importMarkdownAsync.js';
@@ -99,13 +99,13 @@ function parsePackage(
 } {
   const document = xmlDocument(opf, 'EPUB package');
   const manifest = new Map(
-    Array.from(document.getElementsByTagName('item')).flatMap((item) => {
+    xmlElements(document, 'item').flatMap((item) => {
       const id = item.getAttribute('id');
       const href = item.getAttribute('href');
       return id === null || href === null ? [] : [[id, resolveEpubPath(opfPath, href)] as const];
     }),
   );
-  const spine = Array.from(document.getElementsByTagName('itemref')).map((item) => {
+  const spine = xmlElements(document, 'itemref').map((item) => {
     const id = item.getAttribute('idref');
     const path = id === null ? undefined : manifest.get(id);
     if (path === undefined)
@@ -125,20 +125,23 @@ function parsePackage(
 
 /*** Resolve one declared spine reference while ignoring manifest entries without a usable target. */
 /*** Extract decoded XML metadata from the package document. */
-function textElement(document: XmlDocument, element: string, key: 'author' | 'language' | 'title') {
-  const value = document
-    .getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', element)
-    .item(0)
-    ?.textContent?.trim();
+function textElement(document: Document, element: string, key: 'author' | 'language' | 'title') {
+  const node = document.getElementsByTagNameNS('http://purl.org/dc/elements/1.1/', element).item(0);
+  const value = node === null ? undefined : node.textContent.trim();
   return value === undefined || value === '' ? {} : { [key]: value };
 }
 
 /*** Parse XML while rejecting malformed package metadata before it reaches import policy. */
-function xmlDocument(source: string, label: string): XmlDocument {
+function xmlDocument(source: string, label: string): Document {
   const document = new DOMParser().parseFromString(source, 'application/xml');
   if (document.getElementsByTagName('parsererror').length > 0)
     throw new Error(`${label} is invalid XML.`);
   return document;
+}
+
+/*** Convert xmldom's array-like result into typed XML elements. */
+function xmlElements(document: Document, name: string): readonly Element[] {
+  return Array.from(document.getElementsByTagName(name) as ArrayLike<Element>);
 }
 
 /*** Resolve an OPF-relative archive path without allowing traversal outside the EPUB. */

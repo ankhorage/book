@@ -10,11 +10,13 @@ export interface ExportBookPort {
   readonly exportEpubAsync: (input: {
     readonly project: BookProject;
     readonly chapters: readonly Chapter[];
+    readonly projectDirectory: string;
     readonly target: string;
   }) => Promise<string>;
   readonly exportPdfAsync: (input: {
     readonly project: BookProject;
     readonly chapters: readonly Chapter[];
+    readonly projectDirectory: string;
     readonly target: string;
   }) => Promise<string>;
 }
@@ -54,11 +56,13 @@ export async function exportBookAsync(
         ? await port.exportEpubAsync({
             project,
             chapters,
+            projectDirectory: directory,
             target: join(outputDirectory, `${stem}.epub`),
           })
         : await port.exportPdfAsync({
             project,
             chapters,
+            projectDirectory: directory,
             target: join(outputDirectory, `${stem}.pdf`),
           }),
     ),
