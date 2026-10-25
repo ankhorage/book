@@ -157,10 +157,11 @@
   "dependencies": {
     "@ankhorage/ankh": "^0.13.2",
     "@ankhorage/contracts": "^26.2.0",
-    "@xmldom/xmldom": "^0.9.12",
     "@react-pdf/renderer": "^4.3.2",
+    "@xmldom/xmldom": "^0.9.12",
     "@zip.js/zip.js": "^2.23.0",
     "epubjs": "^0.3.93",
+    "jszip": "^3.10.1",
     "pdfjs-dist": "6.4.299",
     "react": "19.2.3",
     "rehype-parse": "^9.0.1",
