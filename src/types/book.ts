@@ -28,6 +28,12 @@ export interface ImportReport {
   readonly format: 'epub' | 'markdown' | 'pdf';
   readonly generatedAt: string;
   readonly warnings: readonly string[];
+  readonly metadata?: Partial<
+    Record<
+      'author' | 'language' | 'title',
+      { readonly confidence: 'high' | 'medium' | 'low'; readonly source: string }
+    >
+  >;
   readonly chapters: readonly {
     readonly id: string;
     readonly source: string;

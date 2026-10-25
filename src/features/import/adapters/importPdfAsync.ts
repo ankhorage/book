@@ -1,10 +1,10 @@
 import { readFile } from 'node:fs/promises';
-import { basename } from 'node:path';
 
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs';
 
 import type { BookProject, ImportReport } from '../../../types/book.js';
 import { importMarkdown } from './importMarkdownAsync.js';
+import { reconstructPdfImport } from './reconstructPdfImport.js';
 
 interface PdfLine {
   readonly page: number;
@@ -37,12 +37,35 @@ export async function importPdfAsync(source: string): Promise<{
     throw new Error(
       'The PDF has no selectable text and appears scanned or image-only. OCR is required before importing it.',
     );
-  const markdown = outlineMarkdown(lines, source);
+  const reconstruction = reconstructPdfImport({ lines });
+  const markdown = reconstruction.sections
+    .map((section) => `# ${section.title}\n\n${section.source}`)
+    .join('\n\n');
   const imported = importMarkdown(source, markdown);
-  const metadata = await pdfMetadataAsync(document);
+  return pdfImportResult(imported, await pdfMetadataAsync(document), reconstruction.author);
+}
+
+/*** Attach explicit PDF reconstruction and metadata provenance to a normalized Markdown import. */
+function pdfImportResult(
+  imported: ReturnType<typeof importMarkdown>,
+  metadata: { readonly author?: string; readonly language?: string; readonly title?: string },
+  recoveredAuthor: string | undefined,
+): {
+  readonly project: BookProject;
+  readonly chapters: ReadonlyMap<string, string>;
+  readonly report: ImportReport;
+} {
+  const author = metadata.author ?? recoveredAuthor;
   return {
     ...imported,
-    project: { ...imported.project, metadata: { ...imported.project.metadata, ...metadata } },
+    project: {
+      ...imported.project,
+      metadata: {
+        ...imported.project.metadata,
+        ...metadata,
+        ...(author === undefined ? {} : { author }),
+      },
+    },
     report: {
       ...imported.report,
       format: 'pdf' as const,
@@ -50,6 +73,7 @@ export async function importPdfAsync(source: string): Promise<{
         'Chapter boundaries were reconstructed from visible chapter labels. Review complex tables, images, and links.',
         'Repeated running headers, footers, and page numbers were removed.',
       ],
+      metadata: metadataReport(metadata, recoveredAuthor),
       chapters: imported.report.chapters.map((chapter) => ({
         ...chapter,
         confidence: 'medium' as const,
@@ -58,12 +82,34 @@ export async function importPdfAsync(source: string): Promise<{
   };
 }
 
+/*** Report whether metadata came from trusted PDF fields or a lower-confidence visible-cover heuristic. */
+function metadataReport(
+  metadata: { readonly author?: string; readonly language?: string; readonly title?: string },
+  recoveredAuthor: string | undefined,
+): NonNullable<ImportReport['metadata']> {
+  return {
+    ...(metadata.title === undefined
+      ? {}
+      : { title: { source: 'PDF metadata', confidence: 'high' as const } }),
+    ...(metadata.language === undefined
+      ? {}
+      : { language: { source: 'PDF metadata', confidence: 'high' as const } }),
+    ...(metadata.author === undefined && recoveredAuthor !== undefined
+      ? { author: { source: 'visible PDF cover', confidence: 'low' as const } }
+      : metadata.author === undefined
+        ? {}
+        : { author: { source: 'PDF metadata', confidence: 'high' as const } }),
+  };
+}
+
 /*** Preserve PDF title and language metadata when the source provides trustworthy strings. */
 async function pdfMetadataAsync(document: pdfjs.PDFDocumentProxy) {
   const { info } = await document.getMetadata();
+  const author = metadataString(info, 'Author');
   const title = metadataString(info, 'Title');
   const language = metadataString(info, 'Language');
   return {
+    ...(author === undefined ? {} : { author }),
     ...(title === undefined ? {} : { title }),
     ...(language === undefined ? {} : { language }),
   };
@@ -148,66 +194,10 @@ function removeRunningMatter(lines: readonly PdfLine[]): readonly PdfLine[] {
   });
 }
 
-/*** Turn visible `KAPITEL NN` labels into chapter boundaries and keep page reading order within each chapter. */
-function outlineMarkdown(lines: readonly PdfLine[], source: string): string {
-  const chapters = lines.flatMap((line, index) =>
-    /^K\s*A\s*P\s*I\s*T\s*E\s*L\s*(?:\d\s*){1,2}$/iu.test(line.text)
-      ? [{ index, title: chapterTitle(lines, index) }]
-      : [],
-  );
-  if (chapters.length === 0) return `# ${basename(source, '.pdf')}\n\n${paragraphs(lines)}`;
-  return chapters
-    .map((chapter, index) => {
-      const start = chapter.index + 1 + chapter.title.lines;
-      const end = chapters[index + 1]?.index ?? lines.length;
-      return `# ${chapter.title.text}\n\n${paragraphs(lines.slice(start, end))}`;
-    })
-    .join('\n\n');
-}
-
-/*** Collect wrapped title lines until the first numbered section or ordinary body paragraph. */
-function chapterTitle(
-  lines: readonly PdfLine[],
-  index: number,
-): { readonly text: string; readonly lines: number } {
-  const following = lines.slice(index + 1);
-  const titleLines = following.slice(0, 3).filter((line, lineIndex) => {
-    const previous = lineIndex === 0 ? lines.at(index) : following.at(lineIndex - 1);
-    return line.page === previous?.page && line.size >= 16 && !/^\d+\.\d+/u.test(line.text);
-  });
-  const title = titleLines
-    .map((line) => line.text)
-    .join(' ')
-    .trim();
-  return { lines: titleLines.length, text: title || 'Untitled chapter' };
-}
-
-/*** Rebuild paragraphs from vertical spacing instead of collapsing every page into one block. */
-function paragraphs(lines: readonly PdfLine[]): string {
-  return repairHyphenation(
-    lines
-      .map((line, index) => {
-        const previous = index === 0 ? undefined : lines[index - 1];
-        const separator = previous?.page !== line.page || previous.y - line.y > 20 ? '\n\n' : '\n';
-        return `${separator}${line.text}`;
-      })
-      .join(''),
-  )
-    .split(/\n{2,}/u)
-    .map((paragraph) => paragraph.replace(/\n/g, ' ').replace(/\s+/gu, ' ').trim())
-    .filter(Boolean)
-    .join('\n\n');
-}
-
 /*** Normalize only for repeated-furniture comparison. */
 function normalize(value: string): string {
   return value
     .replace(/\s*\d{1,4}$/u, '')
     .replace(/[\s‐‑–—-]/gu, '')
     .toLocaleLowerCase();
-}
-
-/*** Repair only clear end-of-line hyphenation. */
-function repairHyphenation(value: string): string {
-  return value.replace(/(\p{L})[‐-]\n(\p{Ll})/gu, '$1$2');
 }
