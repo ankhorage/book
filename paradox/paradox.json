@@ -1,0 +1,2790 @@
+{
+  "packageName": "Book",
+  "packageId": "@ankhorage/book",
+  "description": "Standalone book authoring, import, preview, and export toolkit.",
+  "collaborators": null,
+  "donation": null,
+  "badges": [
+    {
+      "id": "license",
+      "label": "license",
+      "value": "MIT",
+      "color": "2563eb"
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "value": "v0.1.0",
+      "color": "cb3837"
+    },
+    {
+      "id": "runtime",
+      "label": "runtime",
+      "value": "bun",
+      "color": "f59e0b"
+    },
+    {
+      "id": "typescript",
+      "label": "typescript",
+      "value": "strict",
+      "color": "2563eb"
+    },
+    {
+      "id": "eslint",
+      "label": "eslint",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "prettier",
+      "label": "prettier",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "build",
+      "label": "build",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "tests",
+      "label": "tests",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "docs",
+      "label": "paradox",
+      "value": "canonical",
+      "color": "0a7f3f"
+    }
+  ],
+  "usage": {
+    "packageName": "@ankhorage/book",
+    "command": "ankh book --help"
+  },
+  "usageEntries": [],
+  "exampleCount": 0,
+  "findings": [],
+  "config": null,
+  "entrypoints": [
+    "src/index.ts"
+  ],
+  "modules": [
+    {
+      "path": "src/cli/bin.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/cli/index.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/cli/commands/export.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/export/composition/exportBook.ts"
+      ],
+      "exports": [
+        "runExportCommandAsync"
+      ]
+    },
+    {
+      "path": "src/cli/commands/import.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/import/composition/importBook.ts"
+      ],
+      "exports": [
+        "runImportCommandAsync"
+      ]
+    },
+    {
+      "path": "src/cli/commands/init.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/project/application/createProjectAsync.ts"
+      ],
+      "exports": [
+        "runInitCommandAsync"
+      ]
+    },
+    {
+      "path": "src/cli/commands/preview.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/preview/composition/previewBook.ts"
+      ],
+      "exports": [
+        "runPreviewCommandAsync"
+      ]
+    },
+    {
+      "path": "src/cli/commands/validate.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/validation/application/validateProjectAsync.ts"
+      ],
+      "exports": [
+        "runValidateCommandAsync"
+      ]
+    },
+    {
+      "path": "src/cli/index.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": []
+    },
+    {
+      "path": "src/cli/index.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/cli/commands/export.ts",
+        "src/cli/commands/import.ts",
+        "src/cli/commands/init.ts",
+        "src/cli/commands/preview.ts",
+        "src/cli/commands/validate.ts"
+      ],
+      "exports": [
+        "runBookCliAsync"
+      ]
+    },
+    {
+      "path": "src/cli/provider.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/cli/index.ts"
+      ],
+      "exports": [
+        "default"
+      ]
+    },
+    {
+      "path": "src/features/export/adapters/exportEpubAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/export/adapters/renderMarkdownAsXhtml.ts",
+        "src/types/book.ts"
+      ],
+      "exports": [
+        "exportEpubAsync"
+      ]
+    },
+    {
+      "path": "src/features/export/adapters/exportPdfAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/book.ts"
+      ],
+      "exports": [
+        "exportPdfAsync"
+      ]
+    },
+    {
+      "path": "src/features/export/adapters/renderMarkdownAsXhtml.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "renderMarkdownAsXhtml"
+      ]
+    },
+    {
+      "path": "src/features/export/application/exportBookAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/book.ts"
+      ],
+      "exports": [
+        "exportBookAsync",
+        "ExportBookPort"
+      ]
+    },
+    {
+      "path": "src/features/export/composition/exportBook.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/export/adapters/exportEpubAsync.ts",
+        "src/features/export/adapters/exportPdfAsync.ts",
+        "src/features/export/application/exportBookAsync.ts",
+        "src/features/project/application/readProjectAsync.ts"
+      ],
+      "exports": [
+        "exportBook"
+      ]
+    },
+    {
+      "path": "src/features/import/adapters/importBookSourceAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/import/adapters/importEpubAsync.ts",
+        "src/features/import/adapters/importMarkdownAsync.ts",
+        "src/features/import/adapters/importPdfAsync.ts"
+      ],
+      "exports": [
+        "importBookSourceAsync"
+      ]
+    },
+    {
+      "path": "src/features/import/adapters/importEpubAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/import/adapters/importMarkdownAsync.ts",
+        "src/features/import/adapters/importXhtmlAsMarkdown.ts"
+      ],
+      "exports": [
+        "importEpubAsync"
+      ]
+    },
+    {
+      "path": "src/features/import/adapters/importMarkdownAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/book.ts"
+      ],
+      "exports": [
+        "importMarkdown"
+      ]
+    },
+    {
+      "path": "src/features/import/adapters/importPdfAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/import/adapters/importMarkdownAsync.ts"
+      ],
+      "exports": [
+        "importPdfAsync"
+      ]
+    },
+    {
+      "path": "src/features/import/adapters/importXhtmlAsMarkdown.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "importXhtmlAsMarkdown"
+      ]
+    },
+    {
+      "path": "src/features/import/application/importBookAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/book.ts"
+      ],
+      "exports": [
+        "importBookAsync",
+        "ImportBookPort"
+      ]
+    },
+    {
+      "path": "src/features/import/composition/importBook.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/import/adapters/importBookSourceAsync.ts",
+        "src/features/import/application/importBookAsync.ts",
+        "src/features/project/application/writeProjectAsync.ts"
+      ],
+      "exports": [
+        "importBook"
+      ]
+    },
+    {
+      "path": "src/features/preview/application/previewBookAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "previewBookAsync",
+        "PreviewBookPort"
+      ]
+    },
+    {
+      "path": "src/features/preview/composition/previewBook.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/export/composition/exportBook.ts",
+        "src/features/preview/application/previewBookAsync.ts"
+      ],
+      "exports": [
+        "previewBook"
+      ]
+    },
+    {
+      "path": "src/features/project/application/createProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/project/application/writeProjectAsync.ts"
+      ],
+      "exports": [
+        "createProjectAsync"
+      ]
+    },
+    {
+      "path": "src/features/project/application/readProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/book.ts"
+      ],
+      "exports": [
+        "readProjectAsync"
+      ]
+    },
+    {
+      "path": "src/features/project/application/writeProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/book.ts"
+      ],
+      "exports": [
+        "writeProjectAsync"
+      ]
+    },
+    {
+      "path": "src/features/validation/application/validateProjectAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/features/project/application/readProjectAsync.ts"
+      ],
+      "exports": [
+        "validateProjectAsync"
+      ]
+    },
+    {
+      "path": "src/index.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "BookProject",
+        "createProjectAsync",
+        "exportBookAsync",
+        "importBookAsync",
+        "ImportReport",
+        "readProjectAsync",
+        "validateProjectAsync"
+      ]
+    },
+    {
+      "path": "src/types/book.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "BookProject",
+        "ImportReport"
+      ]
+    }
+  ],
+  "exports": [
+    {
+      "name": "BookProject",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/book.ts",
+      "sourceLocation": {
+        "filePath": "src/types/book.ts",
+        "line": 1,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "chapters",
+          "kind": "property",
+          "type": "readonly BookChapter[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "export",
+          "kind": "property",
+          "type": "BookExportSettings",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "metadata",
+          "kind": "property",
+          "type": "BookMetadata",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "createProjectAsync",
+      "title": null,
+      "description": "Create a new semantic book project, refusing accidental replacement.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/project/application/createProjectAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/project/application/createProjectAsync.ts",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(input: { readonly directory: string; readonly force: boolean; }) => Promise<void>",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "{ readonly directory: string; readonly force: boolean; }",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<void>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "exportBookAsync",
+      "title": null,
+      "description": "Render the same canonical project to one or both publishable output formats.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/export/application/exportBookAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/export/application/exportBookAsync.ts",
+        "line": 23,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(input: { readonly directory: string; readonly formats: readonly (\"epub\" | \"pdf\")[]; readonly outputDirectory?: string; readonly force: boolean; }, port: ExportBookPort) => Promise<readonly string[]>",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "{ readonly directory: string; readonly formats: readonly (\"epub\" | \"pdf\")[]; readonly outputDirectory?: string; readonly force: boolean; }",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "port",
+              "type": "ExportBookPort",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<readonly string[]>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "importBookAsync",
+      "title": null,
+      "description": "Import a supported source into an editable, source-independent book project.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/import/application/importBookAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/import/application/importBookAsync.ts",
+        "line": 22,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(input: { readonly source: string; readonly outputDirectory?: string; readonly force: boolean; }, port: ImportBookPort) => Promise<string>",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "{ readonly source: string; readonly outputDirectory?: string; readonly force: boolean; }",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "port",
+              "type": "ImportBookPort",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<string>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ImportReport",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/book.ts",
+      "sourceLocation": {
+        "filePath": "src/types/book.ts",
+        "line": 26,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "chapters",
+          "kind": "property",
+          "type": "readonly { readonly id: string; readonly source: string; readonly confidence: \"high\" | \"medium\" | \"low\"; }[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "format",
+          "kind": "property",
+          "type": "\"epub\" | \"pdf\" | \"markdown\"",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "generatedAt",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "source",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "warnings",
+          "kind": "property",
+          "type": "readonly string[]",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "readProjectAsync",
+      "title": null,
+      "description": "Read and validate a normalized, editable book project.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/project/application/readProjectAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/project/application/readProjectAsync.ts",
+        "line": 9,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "BookProject"
+      ],
+      "signatures": [
+        {
+          "label": "(directory: string) => Promise<BookProject>",
+          "parameters": [
+            {
+              "name": "directory",
+              "type": "string",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<BookProject>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "validateProjectAsync",
+      "title": null,
+      "description": "Validate editable project inputs and report each missing canonical chapter.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/features/validation/application/validateProjectAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/features/validation/application/validateProjectAsync.ts",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(directory: string) => Promise<readonly string[]>",
+          "parameters": [
+            {
+              "name": "directory",
+              "type": "string",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<readonly string[]>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    }
+  ],
+  "components": [],
+  "sourceFunctions": [
+    {
+      "name": "runExportCommandAsync",
+      "description": "Export canonical EPUB and PDF artifacts through the `ankh book export` command.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/commands/export.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "exportFormats",
+      "description": "Resolve mutually exclusive publication format flags.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/commands/export.ts",
+        "line": 25,
+        "column": 1
+      }
+    },
+    {
+      "name": "readOutputDirectory",
+      "description": "Read the optional publication destination without accepting another flag as a path.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/commands/export.ts",
+        "line": 34,
+        "column": 1
+      }
+    },
+    {
+      "name": "runImportCommandAsync",
+      "description": "Import an external manuscript through the `ankh book import` command.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/commands/import.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "readOutputDirectory",
+      "description": "Read the optional import destination without accepting another flag as a path.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/commands/import.ts",
+        "line": 26,
+        "column": 1
+      }
+    },
+    {
+      "name": "runInitCommandAsync",
+      "description": "Create a canonical editable book project from the `ankh book init` command.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/commands/init.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "runPreviewCommandAsync",
+      "description": "Start a live local preview through the `ankh book preview` command.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/commands/preview.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "readPort",
+      "description": "Read the optional TCP port without accepting another flag as its value.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/commands/preview.ts",
+        "line": 18,
+        "column": 1
+      }
+    },
+    {
+      "name": "runValidateCommandAsync",
+      "description": "Validate a book project through the `ankh book validate` command.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/commands/validate.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "runAnkh",
+      "description": "Run the production root CLI with its documented injected discovery seam.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/index.test.ts",
+        "line": 143,
+        "column": 1
+      }
+    },
+    {
+      "name": "bookPackage",
+      "description": "Describe this source checkout as a discovered provider package for contract integration.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/index.test.ts",
+        "line": 161,
+        "column": 1
+      }
+    },
+    {
+      "name": "temporaryDirectoryAsync",
+      "description": "Allocate a cleanup-managed external consumer directory.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/index.test.ts",
+        "line": 177,
+        "column": 1
+      }
+    },
+    {
+      "name": "epubEntryTextAsync",
+      "description": "Read one generated EPUB member for publication-semantics assertions.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/index.test.ts",
+        "line": 184,
+        "column": 1
+      }
+    },
+    {
+      "name": "runBookCliAsync",
+      "description": "Execute the package CLI or the supported `ankh book` provider command.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/index.ts",
+        "line": 10,
+        "column": 1
+      }
+    },
+    {
+      "name": "dispatchCommandAsync",
+      "description": "Dispatch one Ankh provider command at the CLI delivery boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/index.ts",
+        "line": 29,
+        "column": 1
+      }
+    },
+    {
+      "name": "help",
+      "description": "Render concise built-in CLI usage.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/index.ts",
+        "line": 43,
+        "column": 1
+      }
+    },
+    {
+      "name": "packageVersion",
+      "description": "Read the release version used in the provider manifest.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/cli/provider.ts",
+        "line": 38,
+        "column": 1
+      }
+    },
+    {
+      "name": "exportEpubAsync",
+      "description": "Generate a reflowable EPUB 3 archive with navigation, spine, and semantic chapter XHTML.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportEpubAsync.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "navigation",
+      "description": "Render EPUB navigation from the canonical chapter order.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportEpubAsync.ts",
+        "line": 45,
+        "column": 1
+      }
+    },
+    {
+      "name": "xhtml",
+      "description": "Render semantic Markdown through an AST instead of flattening every block into paragraphs.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportEpubAsync.ts",
+        "line": 50,
+        "column": 1
+      }
+    },
+    {
+      "name": "packageDocument",
+      "description": "Render the EPUB package manifest and ordered reading spine.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportEpubAsync.ts",
+        "line": 56,
+        "column": 1
+      }
+    },
+    {
+      "name": "escape",
+      "description": "Escape text placed in XML documents.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportEpubAsync.ts",
+        "line": 65,
+        "column": 1
+      }
+    },
+    {
+      "name": "escapeCharacter",
+      "description": "Convert one XML-reserved character into its named entity.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportEpubAsync.ts",
+        "line": 70,
+        "column": 1
+      }
+    },
+    {
+      "name": "exportPdfAsync",
+      "description": "Generate an A5 PDF using a maintained layout engine rather than handwritten PDF syntax.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportPdfAsync.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "createPdfDocument",
+      "description": "Compose the document tree consumed by the PDF layout adapter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportPdfAsync.ts",
+        "line": 18,
+        "column": 1
+      }
+    },
+    {
+      "name": "coverPage",
+      "description": "Render the first PDF page from the book's publication metadata.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportPdfAsync.ts",
+        "line": 41,
+        "column": 1
+      }
+    },
+    {
+      "name": "chapterPages",
+      "description": "Render one readable PDF page for each canonical chapter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/exportPdfAsync.ts",
+        "line": 58,
+        "column": 1
+      }
+    },
+    {
+      "name": "renderMarkdownAsXhtml",
+      "description": "Render Markdown through its AST so publication semantics are preserved as XHTML elements.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/adapters/renderMarkdownAsXhtml.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "exportBookAsync",
+      "description": "Render the same canonical project to one or both publishable output formats.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/application/exportBookAsync.ts",
+        "line": 23,
+        "column": 1
+      }
+    },
+    {
+      "name": "slug",
+      "description": "Produce deterministic, filename-safe output names.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/application/exportBookAsync.ts",
+        "line": 69,
+        "column": 1
+      }
+    },
+    {
+      "name": "exportBook",
+      "description": "Compose publication adapters around the export use case.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/export/composition/exportBook.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "importBookSourceAsync",
+      "description": "Import one supported source through its concrete format adapter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importBookSourceAsync.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "importEpubAsync",
+      "description": "Import EPUB content in OPF spine order while retaining semantic XHTML as Markdown.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 11,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateEntries",
+      "description": "Reject archives that can exhaust resources or escape the logical EPUB namespace.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 58,
+        "column": 1
+      }
+    },
+    {
+      "name": "readPackagePathAsync",
+      "description": "Resolve the package document declared by the EPUB container.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 69,
+        "column": 1
+      }
+    },
+    {
+      "name": "readTextAsync",
+      "description": "Read one declared EPUB file while preserving archive boundary checks.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 82,
+        "column": 1
+      }
+    },
+    {
+      "name": "parsePackage",
+      "description": "Parse OPF metadata, manifest, and the declared logical reading spine.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 89,
+        "column": 1
+      }
+    },
+    {
+      "name": "textElement",
+      "description": "Extract decoded XML metadata from the package document.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 127,
+        "column": 1
+      }
+    },
+    {
+      "name": "xmlDocument",
+      "description": "Parse XML while rejecting malformed package metadata before it reaches import policy.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 136,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveEpubPath",
+      "description": "Resolve an OPF-relative archive path without allowing traversal outside the EPUB.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 144,
+        "column": 1
+      }
+    },
+    {
+      "name": "ensureChapterHeading",
+      "description": "Give spine documents without an H1 a stable editable chapter boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 152,
+        "column": 1
+      }
+    },
+    {
+      "name": "isFileEntry",
+      "description": "Narrow ZIP metadata to entries that can yield archive content.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importEpubAsync.ts",
+        "line": 159,
+        "column": 1
+      }
+    },
+    {
+      "name": "importMarkdown",
+      "description": "Convert a plain Markdown manuscript into canonical chapters and metadata.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importMarkdownAsync.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "splitChapters",
+      "description": "Split semantic level-one headings into deterministic source files.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importMarkdownAsync.ts",
+        "line": 44,
+        "column": 1
+      }
+    },
+    {
+      "name": "slug",
+      "description": "Turn an editable chapter title into a stable path component.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importMarkdownAsync.ts",
+        "line": 59,
+        "column": 1
+      }
+    },
+    {
+      "name": "importPdfAsync",
+      "description": "Extract selectable PDF text into editable Markdown, reporting unavoidable reconstruction loss.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importPdfAsync.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "repairHyphenation",
+      "description": "Repair only clear line-break hyphenation while preserving intentional hyphens.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importPdfAsync.ts",
+        "line": 51,
+        "column": 1
+      }
+    },
+    {
+      "name": "importXhtmlAsMarkdown",
+      "description": "Convert an EPUB XHTML content document into editable semantic Markdown through ASTs.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/adapters/importXhtmlAsMarkdown.ts",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "importBookAsync",
+      "description": "Import a supported source into an editable, source-independent book project.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/application/importBookAsync.ts",
+        "line": 22,
+        "column": 1
+      }
+    },
+    {
+      "name": "importBook",
+      "description": "Compose the import use case with filesystem and format adapters.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/import/composition/importBook.ts",
+        "line": 5,
+        "column": 1
+      }
+    },
+    {
+      "name": "previewBookAsync",
+      "description": "Serve temporary actual EPUB and PDF output on loopback and rebuild after project changes.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/preview/application/previewBookAsync.ts",
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "createRebuildScheduler",
+      "description": "Serialize debounced rebuilds so one source change cannot overlap or recursively trigger another.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/preview/application/previewBookAsync.ts",
+        "line": 46,
+        "column": 1
+      }
+    },
+    {
+      "name": "previewResponseAsync",
+      "description": "Serve the preview page, EPUB reader runtime, and real publication artifacts.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/preview/application/previewBookAsync.ts",
+        "line": 66,
+        "column": 1
+      }
+    },
+    {
+      "name": "previewPageResponse",
+      "description": "Render a loopback-only reader that loads the generated EPUB, alongside the native PDF preview.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/preview/application/previewBookAsync.ts",
+        "line": 82,
+        "column": 1
+      }
+    },
+    {
+      "name": "findOutputAsync",
+      "description": "Find an output selected by the deterministic exporter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/preview/application/previewBookAsync.ts",
+        "line": 90,
+        "column": 1
+      }
+    },
+    {
+      "name": "rebuildPreviewAsync",
+      "description": "Rebuild both real publication artifacts for a browser preview session.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/preview/application/previewBookAsync.ts",
+        "line": 97,
+        "column": 1
+      }
+    },
+    {
+      "name": "waitForPreviewExitAsync",
+      "description": "Hold the process open until the interactive preview receives an interrupt or termination signal.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/preview/application/previewBookAsync.ts",
+        "line": 111,
+        "column": 1
+      }
+    },
+    {
+      "name": "previewBook",
+      "description": "Compose loopback preview delivery with the publication composition root.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/preview/composition/previewBook.ts",
+        "line": 5,
+        "column": 1
+      }
+    },
+    {
+      "name": "createProjectAsync",
+      "description": "Create a new semantic book project, refusing accidental replacement.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/createProjectAsync.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
+      "name": "readProjectAsync",
+      "description": "Read and validate a normalized, editable book project.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/readProjectAsync.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseProject",
+      "description": "Validate the persisted project shape before it reaches conversion adapters.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/readProjectAsync.ts",
+        "line": 16,
+        "column": 1
+      }
+    },
+    {
+      "name": "parseChapter",
+      "description": "Parse one persisted chapter entry.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/readProjectAsync.ts",
+        "line": 49,
+        "column": 1
+      }
+    },
+    {
+      "name": "isProjectRelativePath",
+      "description": "Reject absolute and parent-traversing paths before chapter files reach the filesystem.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/readProjectAsync.ts",
+        "line": 60,
+        "column": 1
+      }
+    },
+    {
+      "name": "stringAt",
+      "description": "Read a required non-empty string property.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/readProjectAsync.ts",
+        "line": 67,
+        "column": 1
+      }
+    },
+    {
+      "name": "optionalStringAt",
+      "description": "Read an optional non-empty string property.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/readProjectAsync.ts",
+        "line": 74,
+        "column": 1
+      }
+    },
+    {
+      "name": "isRecord",
+      "description": "Check whether an unknown value is a record.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/readProjectAsync.ts",
+        "line": 80,
+        "column": 1
+      }
+    },
+    {
+      "name": "writeProjectAsync",
+      "description": "Persist the canonical project representation without retaining the original source.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/writeProjectAsync.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "writeProjectFilesAsync",
+      "description": "Write every project file into an isolated staging directory before replacement.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/writeProjectAsync.ts",
+        "line": 30,
+        "column": 1
+      }
+    },
+    {
+      "name": "replaceProjectAsync",
+      "description": "Replace a complete destination only after all staged project files are valid and present.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/writeProjectAsync.ts",
+        "line": 58,
+        "column": 1
+      }
+    },
+    {
+      "name": "existsAsync",
+      "description": "Check whether a destination exists without conflating absence with write errors.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/project/application/writeProjectAsync.ts",
+        "line": 80,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateProjectAsync",
+      "description": "Validate editable project inputs and report each missing canonical chapter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/features/validation/application/validateProjectAsync.ts",
+        "line": 7,
+        "column": 1
+      }
+    }
+  ],
+  "sequenceScenarios": [
+    {
+      "kind": "export",
+      "name": "createProjectAsync",
+      "sourcePath": "src/features/project/application/createProjectAsync.ts",
+      "symbolName": "createProjectAsync",
+      "description": "Create a new semantic book project, refusing accidental replacement.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "exportBookAsync",
+      "sourcePath": "src/features/export/application/exportBookAsync.ts",
+      "symbolName": "exportBookAsync",
+      "description": "Render the same canonical project to one or both publishable output formats.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "importBookAsync",
+      "sourcePath": "src/features/import/application/importBookAsync.ts",
+      "symbolName": "importBookAsync",
+      "description": "Import a supported source into an editable, source-independent book project.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "readProjectAsync",
+      "sourcePath": "src/features/project/application/readProjectAsync.ts",
+      "symbolName": "readProjectAsync",
+      "description": "Read and validate a normalized, editable book project.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "validateProjectAsync",
+      "sourcePath": "src/features/validation/application/validateProjectAsync.ts",
+      "symbolName": "validateProjectAsync",
+      "description": "Validate editable project inputs and report each missing canonical chapter.",
+      "isReadme": false
+    }
+  ],
+  "graphs": {
+    "imports": [
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/export/application/exportBookAsync.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/import/application/importBookAsync.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/project/application/createProjectAsync.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/project/application/readProjectAsync.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/features/validation/application/validateProjectAsync.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/types/book.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/cli/bin.ts",
+        "toPath": "src/cli/index.ts",
+        "sourcePath": "src/cli/bin.ts"
+      },
+      {
+        "fromPath": "src/cli/index.ts",
+        "toPath": "src/cli/commands/export.ts",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromPath": "src/cli/index.ts",
+        "toPath": "src/cli/commands/import.ts",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromPath": "src/cli/index.ts",
+        "toPath": "src/cli/commands/init.ts",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromPath": "src/cli/index.ts",
+        "toPath": "src/cli/commands/preview.ts",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromPath": "src/cli/index.ts",
+        "toPath": "src/cli/commands/validate.ts",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromPath": "src/cli/provider.ts",
+        "toPath": "src/cli/index.ts",
+        "sourcePath": "src/cli/provider.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/export.ts",
+        "toPath": "src/features/export/composition/exportBook.ts",
+        "sourcePath": "src/cli/commands/export.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/import.ts",
+        "toPath": "src/features/import/composition/importBook.ts",
+        "sourcePath": "src/cli/commands/import.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/init.ts",
+        "toPath": "src/features/project/application/createProjectAsync.ts",
+        "sourcePath": "src/cli/commands/init.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/preview.ts",
+        "toPath": "src/features/preview/composition/previewBook.ts",
+        "sourcePath": "src/cli/commands/preview.ts"
+      },
+      {
+        "fromPath": "src/cli/commands/validate.ts",
+        "toPath": "src/features/validation/application/validateProjectAsync.ts",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromPath": "src/features/export/adapters/exportEpubAsync.ts",
+        "toPath": "src/types/book.ts",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromPath": "src/features/export/adapters/exportEpubAsync.ts",
+        "toPath": "src/features/export/adapters/renderMarkdownAsXhtml.ts",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromPath": "src/features/export/adapters/exportPdfAsync.ts",
+        "toPath": "src/types/book.ts",
+        "sourcePath": "src/features/export/adapters/exportPdfAsync.ts"
+      },
+      {
+        "fromPath": "src/features/export/application/exportBookAsync.ts",
+        "toPath": "src/types/book.ts",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromPath": "src/features/export/composition/exportBook.ts",
+        "toPath": "src/features/project/application/readProjectAsync.ts",
+        "sourcePath": "src/features/export/composition/exportBook.ts"
+      },
+      {
+        "fromPath": "src/features/export/composition/exportBook.ts",
+        "toPath": "src/features/export/application/exportBookAsync.ts",
+        "sourcePath": "src/features/export/composition/exportBook.ts"
+      },
+      {
+        "fromPath": "src/features/export/composition/exportBook.ts",
+        "toPath": "src/features/export/adapters/exportEpubAsync.ts",
+        "sourcePath": "src/features/export/composition/exportBook.ts"
+      },
+      {
+        "fromPath": "src/features/export/composition/exportBook.ts",
+        "toPath": "src/features/export/adapters/exportPdfAsync.ts",
+        "sourcePath": "src/features/export/composition/exportBook.ts"
+      },
+      {
+        "fromPath": "src/features/import/adapters/importBookSourceAsync.ts",
+        "toPath": "src/features/import/adapters/importEpubAsync.ts",
+        "sourcePath": "src/features/import/adapters/importBookSourceAsync.ts"
+      },
+      {
+        "fromPath": "src/features/import/adapters/importBookSourceAsync.ts",
+        "toPath": "src/features/import/adapters/importMarkdownAsync.ts",
+        "sourcePath": "src/features/import/adapters/importBookSourceAsync.ts"
+      },
+      {
+        "fromPath": "src/features/import/adapters/importBookSourceAsync.ts",
+        "toPath": "src/features/import/adapters/importPdfAsync.ts",
+        "sourcePath": "src/features/import/adapters/importBookSourceAsync.ts"
+      },
+      {
+        "fromPath": "src/features/import/adapters/importEpubAsync.ts",
+        "toPath": "src/features/import/adapters/importMarkdownAsync.ts",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromPath": "src/features/import/adapters/importEpubAsync.ts",
+        "toPath": "src/features/import/adapters/importXhtmlAsMarkdown.ts",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromPath": "src/features/import/adapters/importMarkdownAsync.ts",
+        "toPath": "src/types/book.ts",
+        "sourcePath": "src/features/import/adapters/importMarkdownAsync.ts"
+      },
+      {
+        "fromPath": "src/features/import/adapters/importPdfAsync.ts",
+        "toPath": "src/features/import/adapters/importMarkdownAsync.ts",
+        "sourcePath": "src/features/import/adapters/importPdfAsync.ts"
+      },
+      {
+        "fromPath": "src/features/import/application/importBookAsync.ts",
+        "toPath": "src/types/book.ts",
+        "sourcePath": "src/features/import/application/importBookAsync.ts"
+      },
+      {
+        "fromPath": "src/features/import/composition/importBook.ts",
+        "toPath": "src/features/project/application/writeProjectAsync.ts",
+        "sourcePath": "src/features/import/composition/importBook.ts"
+      },
+      {
+        "fromPath": "src/features/import/composition/importBook.ts",
+        "toPath": "src/features/import/application/importBookAsync.ts",
+        "sourcePath": "src/features/import/composition/importBook.ts"
+      },
+      {
+        "fromPath": "src/features/import/composition/importBook.ts",
+        "toPath": "src/features/import/adapters/importBookSourceAsync.ts",
+        "sourcePath": "src/features/import/composition/importBook.ts"
+      },
+      {
+        "fromPath": "src/features/preview/composition/previewBook.ts",
+        "toPath": "src/features/export/composition/exportBook.ts",
+        "sourcePath": "src/features/preview/composition/previewBook.ts"
+      },
+      {
+        "fromPath": "src/features/preview/composition/previewBook.ts",
+        "toPath": "src/features/preview/application/previewBookAsync.ts",
+        "sourcePath": "src/features/preview/composition/previewBook.ts"
+      },
+      {
+        "fromPath": "src/features/project/application/createProjectAsync.ts",
+        "toPath": "src/features/project/application/writeProjectAsync.ts",
+        "sourcePath": "src/features/project/application/createProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/project/application/readProjectAsync.ts",
+        "toPath": "src/types/book.ts",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/project/application/writeProjectAsync.ts",
+        "toPath": "src/types/book.ts",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromPath": "src/features/validation/application/validateProjectAsync.ts",
+        "toPath": "src/features/project/application/readProjectAsync.ts",
+        "sourcePath": "src/features/validation/application/validateProjectAsync.ts"
+      }
+    ],
+    "calls": [
+      {
+        "fromSymbol": "src/cli/bin.ts",
+        "toSymbol": "runBookCliAsync",
+        "callExpression": "runBookCliAsync",
+        "sourcePath": "src/cli/bin.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "afterEach",
+        "callExpression": "afterEach",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "temporaryDirectoryAsync",
+        "callExpression": "temporaryDirectoryAsync",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "runAnkh",
+        "callExpression": "runAnkh",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "src/cli/index.test.ts",
+        "toSymbol": "epubEntryTextAsync",
+        "callExpression": "epubEntryTextAsync",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "runAnkh",
+        "toSymbol": "runCli",
+        "callExpression": "runCli",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "discoverPackages",
+        "toSymbol": "bookPackage",
+        "callExpression": "bookPackage",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "bookPackage",
+        "toSymbol": "readFileSync",
+        "callExpression": "readFileSync",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "bookPackage",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "temporaryDirectoryAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "temporaryDirectoryAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "temporaryDirectoryAsync",
+        "toSymbol": "tmpdir",
+        "callExpression": "tmpdir",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "epubEntryTextAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/cli/index.test.ts"
+      },
+      {
+        "fromSymbol": "runBookCliAsync",
+        "toSymbol": "help",
+        "callExpression": "help",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromSymbol": "runBookCliAsync",
+        "toSymbol": "dispatchCommandAsync",
+        "callExpression": "dispatchCommandAsync",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromSymbol": "dispatchCommandAsync",
+        "toSymbol": "runInitCommandAsync",
+        "callExpression": "runInitCommandAsync",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromSymbol": "dispatchCommandAsync",
+        "toSymbol": "runImportCommandAsync",
+        "callExpression": "runImportCommandAsync",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromSymbol": "dispatchCommandAsync",
+        "toSymbol": "runExportCommandAsync",
+        "callExpression": "runExportCommandAsync",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromSymbol": "dispatchCommandAsync",
+        "toSymbol": "runValidateCommandAsync",
+        "callExpression": "runValidateCommandAsync",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromSymbol": "dispatchCommandAsync",
+        "toSymbol": "runPreviewCommandAsync",
+        "callExpression": "runPreviewCommandAsync",
+        "sourcePath": "src/cli/index.ts"
+      },
+      {
+        "fromSymbol": "src/cli/provider.ts",
+        "toSymbol": "packageVersion",
+        "callExpression": "packageVersion",
+        "sourcePath": "src/cli/provider.ts"
+      },
+      {
+        "fromSymbol": "handler",
+        "toSymbol": "runBookCliAsync",
+        "callExpression": "runBookCliAsync",
+        "sourcePath": "src/cli/provider.ts"
+      },
+      {
+        "fromSymbol": "packageVersion",
+        "toSymbol": "readFileSync",
+        "callExpression": "readFileSync",
+        "sourcePath": "src/cli/provider.ts"
+      },
+      {
+        "fromSymbol": "runExportCommandAsync",
+        "toSymbol": "exportFormats",
+        "callExpression": "exportFormats",
+        "sourcePath": "src/cli/commands/export.ts"
+      },
+      {
+        "fromSymbol": "runExportCommandAsync",
+        "toSymbol": "readOutputDirectory",
+        "callExpression": "readOutputDirectory",
+        "sourcePath": "src/cli/commands/export.ts"
+      },
+      {
+        "fromSymbol": "runExportCommandAsync",
+        "toSymbol": "exportBook",
+        "callExpression": "exportBook",
+        "sourcePath": "src/cli/commands/export.ts"
+      },
+      {
+        "fromSymbol": "runExportCommandAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/cli/commands/export.ts"
+      },
+      {
+        "fromSymbol": "runImportCommandAsync",
+        "toSymbol": "readOutputDirectory",
+        "callExpression": "readOutputDirectory",
+        "sourcePath": "src/cli/commands/import.ts"
+      },
+      {
+        "fromSymbol": "runImportCommandAsync",
+        "toSymbol": "importBook",
+        "callExpression": "importBook",
+        "sourcePath": "src/cli/commands/import.ts"
+      },
+      {
+        "fromSymbol": "runImportCommandAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/cli/commands/import.ts"
+      },
+      {
+        "fromSymbol": "runInitCommandAsync",
+        "toSymbol": "createProjectAsync",
+        "callExpression": "createProjectAsync",
+        "sourcePath": "src/cli/commands/init.ts"
+      },
+      {
+        "fromSymbol": "runInitCommandAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/cli/commands/init.ts"
+      },
+      {
+        "fromSymbol": "runPreviewCommandAsync",
+        "toSymbol": "readPort",
+        "callExpression": "readPort",
+        "sourcePath": "src/cli/commands/preview.ts"
+      },
+      {
+        "fromSymbol": "runPreviewCommandAsync",
+        "toSymbol": "previewBook",
+        "callExpression": "previewBook",
+        "sourcePath": "src/cli/commands/preview.ts"
+      },
+      {
+        "fromSymbol": "runValidateCommandAsync",
+        "toSymbol": "validateProjectAsync",
+        "callExpression": "validateProjectAsync",
+        "sourcePath": "src/cli/commands/validate.ts"
+      },
+      {
+        "fromSymbol": "exportEpubAsync",
+        "toSymbol": "navigation",
+        "callExpression": "navigation",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/export/adapters/exportEpubAsync.ts",
+        "toSymbol": "xhtml",
+        "callExpression": "xhtml",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "exportEpubAsync",
+        "toSymbol": "packageDocument",
+        "callExpression": "packageDocument",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "exportEpubAsync",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "navigation",
+        "toSymbol": "escape",
+        "callExpression": "escape",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/export/adapters/exportEpubAsync.ts",
+        "toSymbol": "escape",
+        "callExpression": "escape",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "xhtml",
+        "toSymbol": "renderMarkdownAsXhtml",
+        "callExpression": "renderMarkdownAsXhtml",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "xhtml",
+        "toSymbol": "escape",
+        "callExpression": "escape",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "packageDocument",
+        "toSymbol": "escape",
+        "callExpression": "escape",
+        "sourcePath": "src/features/export/adapters/exportEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "exportPdfAsync",
+        "toSymbol": "renderToBuffer",
+        "callExpression": "renderToBuffer",
+        "sourcePath": "src/features/export/adapters/exportPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "exportPdfAsync",
+        "toSymbol": "createPdfDocument",
+        "callExpression": "createPdfDocument",
+        "sourcePath": "src/features/export/adapters/exportPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "createPdfDocument",
+        "toSymbol": "coverPage",
+        "callExpression": "coverPage",
+        "sourcePath": "src/features/export/adapters/exportPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "createPdfDocument",
+        "toSymbol": "chapterPages",
+        "callExpression": "chapterPages",
+        "sourcePath": "src/features/export/adapters/exportPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "createPdfDocument",
+        "toSymbol": "createElement",
+        "callExpression": "createElement",
+        "sourcePath": "src/features/export/adapters/exportPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "coverPage",
+        "toSymbol": "createElement",
+        "callExpression": "createElement",
+        "sourcePath": "src/features/export/adapters/exportPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/export/adapters/exportPdfAsync.ts",
+        "toSymbol": "createElement",
+        "callExpression": "createElement",
+        "sourcePath": "src/features/export/adapters/exportPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "renderMarkdownAsXhtml",
+        "toSymbol": "unified",
+        "callExpression": "unified",
+        "sourcePath": "src/features/export/adapters/renderMarkdownAsXhtml.ts"
+      },
+      {
+        "fromSymbol": "exportBookAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "exportBookAsync",
+        "toSymbol": "readProjectAsync",
+        "callExpression": "port.readProjectAsync",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/export/application/exportBookAsync.ts",
+        "toSymbol": "readChapterAsync",
+        "callExpression": "port.readChapterAsync",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "exportBookAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "exportBookAsync",
+        "toSymbol": "ensureDirectoryAsync",
+        "callExpression": "port.ensureDirectoryAsync",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "exportBookAsync",
+        "toSymbol": "slug",
+        "callExpression": "slug",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/export/application/exportBookAsync.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/export/application/exportBookAsync.ts",
+        "toSymbol": "existsAsync",
+        "callExpression": "port.existsAsync",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/export/application/exportBookAsync.ts",
+        "toSymbol": "exportEpubAsync",
+        "callExpression": "port.exportEpubAsync",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/export/application/exportBookAsync.ts",
+        "toSymbol": "exportPdfAsync",
+        "callExpression": "port.exportPdfAsync",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "exportBook",
+        "toSymbol": "exportBookAsync",
+        "callExpression": "exportBookAsync",
+        "sourcePath": "src/features/export/composition/exportBook.ts"
+      },
+      {
+        "fromSymbol": "readChapterAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/export/composition/exportBook.ts"
+      },
+      {
+        "fromSymbol": "readChapterAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/export/composition/exportBook.ts"
+      },
+      {
+        "fromSymbol": "ensureDirectoryAsync",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/features/export/composition/exportBook.ts"
+      },
+      {
+        "fromSymbol": "importBookSourceAsync",
+        "toSymbol": "extname",
+        "callExpression": "extname",
+        "sourcePath": "src/features/import/adapters/importBookSourceAsync.ts"
+      },
+      {
+        "fromSymbol": "importBookSourceAsync",
+        "toSymbol": "importPdfAsync",
+        "callExpression": "importPdfAsync",
+        "sourcePath": "src/features/import/adapters/importBookSourceAsync.ts"
+      },
+      {
+        "fromSymbol": "importBookSourceAsync",
+        "toSymbol": "importEpubAsync",
+        "callExpression": "importEpubAsync",
+        "sourcePath": "src/features/import/adapters/importBookSourceAsync.ts"
+      },
+      {
+        "fromSymbol": "importBookSourceAsync",
+        "toSymbol": "importMarkdown",
+        "callExpression": "importMarkdown",
+        "sourcePath": "src/features/import/adapters/importBookSourceAsync.ts"
+      },
+      {
+        "fromSymbol": "importBookSourceAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/import/adapters/importBookSourceAsync.ts"
+      },
+      {
+        "fromSymbol": "importEpubAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "importEpubAsync",
+        "toSymbol": "validateEntries",
+        "callExpression": "validateEntries",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "importEpubAsync",
+        "toSymbol": "readPackagePathAsync",
+        "callExpression": "readPackagePathAsync",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "importEpubAsync",
+        "toSymbol": "parsePackage",
+        "callExpression": "parsePackage",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "importEpubAsync",
+        "toSymbol": "readTextAsync",
+        "callExpression": "readTextAsync",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/import/adapters/importEpubAsync.ts",
+        "toSymbol": "importXhtmlAsMarkdown",
+        "callExpression": "importXhtmlAsMarkdown",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/import/adapters/importEpubAsync.ts",
+        "toSymbol": "readTextAsync",
+        "callExpression": "readTextAsync",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "importEpubAsync",
+        "toSymbol": "importMarkdown",
+        "callExpression": "importMarkdown",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/import/adapters/importEpubAsync.ts",
+        "toSymbol": "ensureChapterHeading",
+        "callExpression": "ensureChapterHeading",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "readPackagePathAsync",
+        "toSymbol": "readTextAsync",
+        "callExpression": "readTextAsync",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "readPackagePathAsync",
+        "toSymbol": "xmlDocument",
+        "callExpression": "xmlDocument",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "parsePackage",
+        "toSymbol": "xmlDocument",
+        "callExpression": "xmlDocument",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/import/adapters/importEpubAsync.ts",
+        "toSymbol": "resolveEpubPath",
+        "callExpression": "resolveEpubPath",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "parsePackage",
+        "toSymbol": "textElement",
+        "callExpression": "textElement",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveEpubPath",
+        "toSymbol": "normalize",
+        "callExpression": "normalize",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveEpubPath",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "ensureChapterHeading",
+        "toSymbol": "basename",
+        "callExpression": "basename",
+        "sourcePath": "src/features/import/adapters/importEpubAsync.ts"
+      },
+      {
+        "fromSymbol": "importMarkdown",
+        "toSymbol": "splitChapters",
+        "callExpression": "splitChapters",
+        "sourcePath": "src/features/import/adapters/importMarkdownAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/import/adapters/importMarkdownAsync.ts",
+        "toSymbol": "slug",
+        "callExpression": "slug",
+        "sourcePath": "src/features/import/adapters/importMarkdownAsync.ts"
+      },
+      {
+        "fromSymbol": "importMarkdown",
+        "toSymbol": "basename",
+        "callExpression": "basename",
+        "sourcePath": "src/features/import/adapters/importMarkdownAsync.ts"
+      },
+      {
+        "fromSymbol": "importPdfAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/import/adapters/importPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "importPdfAsync",
+        "toSymbol": "importMarkdown",
+        "callExpression": "importMarkdown",
+        "sourcePath": "src/features/import/adapters/importPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "importPdfAsync",
+        "toSymbol": "basename",
+        "callExpression": "basename",
+        "sourcePath": "src/features/import/adapters/importPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "importPdfAsync",
+        "toSymbol": "repairHyphenation",
+        "callExpression": "repairHyphenation",
+        "sourcePath": "src/features/import/adapters/importPdfAsync.ts"
+      },
+      {
+        "fromSymbol": "importXhtmlAsMarkdown",
+        "toSymbol": "unified",
+        "callExpression": "unified",
+        "sourcePath": "src/features/import/adapters/importXhtmlAsMarkdown.ts"
+      },
+      {
+        "fromSymbol": "importBookAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/import/application/importBookAsync.ts"
+      },
+      {
+        "fromSymbol": "importBookAsync",
+        "toSymbol": "extname",
+        "callExpression": "extname",
+        "sourcePath": "src/features/import/application/importBookAsync.ts"
+      },
+      {
+        "fromSymbol": "importBookAsync",
+        "toSymbol": "importSourceAsync",
+        "callExpression": "port.importSourceAsync",
+        "sourcePath": "src/features/import/application/importBookAsync.ts"
+      },
+      {
+        "fromSymbol": "importBookAsync",
+        "toSymbol": "basename",
+        "callExpression": "basename",
+        "sourcePath": "src/features/import/application/importBookAsync.ts"
+      },
+      {
+        "fromSymbol": "importBookAsync",
+        "toSymbol": "writeProjectAsync",
+        "callExpression": "port.writeProjectAsync",
+        "sourcePath": "src/features/import/application/importBookAsync.ts"
+      },
+      {
+        "fromSymbol": "importBook",
+        "toSymbol": "importBookAsync",
+        "callExpression": "importBookAsync",
+        "sourcePath": "src/features/import/composition/importBook.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "tmpdir",
+        "callExpression": "tmpdir",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "rebuildPreviewAsync",
+        "callExpression": "rebuildPreviewAsync",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "createRebuildScheduler",
+        "callExpression": "createRebuildScheduler",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "fetch",
+        "toSymbol": "previewResponseAsync",
+        "callExpression": "previewResponseAsync",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "watch",
+        "callExpression": "watch",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/preview/application/previewBookAsync.ts",
+        "toSymbol": "scheduleRebuild",
+        "callExpression": "scheduleRebuild",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "write",
+        "callExpression": "input.write",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "waitForPreviewExitAsync",
+        "callExpression": "waitForPreviewExitAsync",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBookAsync",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/preview/application/previewBookAsync.ts",
+        "toSymbol": "rebuildPreviewAsync",
+        "callExpression": "rebuildPreviewAsync",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/preview/application/previewBookAsync.ts",
+        "toSymbol": "write",
+        "callExpression": "write",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewResponseAsync",
+        "toSymbol": "previewPageResponse",
+        "callExpression": "previewPageResponse",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewResponseAsync",
+        "toSymbol": "fileURLToPath",
+        "callExpression": "fileURLToPath",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewResponseAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewResponseAsync",
+        "toSymbol": "findOutputAsync",
+        "callExpression": "findOutputAsync",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "rebuildPreviewAsync",
+        "toSymbol": "exportBook",
+        "callExpression": "port.exportBook",
+        "sourcePath": "src/features/preview/application/previewBookAsync.ts"
+      },
+      {
+        "fromSymbol": "previewBook",
+        "toSymbol": "previewBookAsync",
+        "callExpression": "previewBookAsync",
+        "sourcePath": "src/features/preview/composition/previewBook.ts"
+      },
+      {
+        "fromSymbol": "createProjectAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/project/application/createProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "createProjectAsync",
+        "toSymbol": "access",
+        "callExpression": "access",
+        "sourcePath": "src/features/project/application/createProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "createProjectAsync",
+        "toSymbol": "writeProjectAsync",
+        "callExpression": "writeProjectAsync",
+        "sourcePath": "src/features/project/application/createProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "parse",
+        "callExpression": "parse",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toSymbol": "parseProject",
+        "callExpression": "parseProject",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "parseProject",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "parseProject",
+        "toSymbol": "stringAt",
+        "callExpression": "stringAt",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/project/application/readProjectAsync.ts",
+        "toSymbol": "parseChapter",
+        "callExpression": "parseChapter",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "parseProject",
+        "toSymbol": "optionalStringAt",
+        "callExpression": "optionalStringAt",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "parseChapter",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "parseChapter",
+        "toSymbol": "stringAt",
+        "callExpression": "stringAt",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "parseChapter",
+        "toSymbol": "isProjectRelativePath",
+        "callExpression": "isProjectRelativePath",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "isProjectRelativePath",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "isProjectRelativePath",
+        "toSymbol": "relative",
+        "callExpression": "relative",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "isProjectRelativePath",
+        "toSymbol": "isAbsolute",
+        "callExpression": "isAbsolute",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "stringAt",
+        "toSymbol": "optionalStringAt",
+        "callExpression": "optionalStringAt",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "existsAsync",
+        "callExpression": "existsAsync",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "writeProjectFilesAsync",
+        "callExpression": "writeProjectFilesAsync",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "replaceProjectAsync",
+        "callExpression": "replaceProjectAsync",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectAsync",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/project/application/writeProjectAsync.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/project/application/writeProjectAsync.ts",
+        "toSymbol": "mkdir",
+        "callExpression": "mkdir",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/project/application/writeProjectAsync.ts",
+        "toSymbol": "dirname",
+        "callExpression": "dirname",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/project/application/writeProjectAsync.ts",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectFilesAsync",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectFilesAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "writeProjectFilesAsync",
+        "toSymbol": "stringify",
+        "callExpression": "stringify",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "replaceProjectAsync",
+        "toSymbol": "existsAsync",
+        "callExpression": "existsAsync",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "replaceProjectAsync",
+        "toSymbol": "rename",
+        "callExpression": "rename",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "replaceProjectAsync",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "existsAsync",
+        "toSymbol": "access",
+        "callExpression": "access",
+        "sourcePath": "src/features/project/application/writeProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "validateProjectAsync",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/features/validation/application/validateProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "validateProjectAsync",
+        "toSymbol": "readProjectAsync",
+        "callExpression": "readProjectAsync",
+        "sourcePath": "src/features/validation/application/validateProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "src/features/validation/application/validateProjectAsync.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/validation/application/validateProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "validateProjectAsync",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "src/features/validation/application/validateProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "validateProjectAsync",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/features/validation/application/validateProjectAsync.ts"
+      }
+    ],
+    "typeReferences": [
+      {
+        "fromSymbol": "exportBookAsync",
+        "toType": "ExportBookPort",
+        "sourcePath": "src/features/export/application/exportBookAsync.ts"
+      },
+      {
+        "fromSymbol": "importBookAsync",
+        "toType": "ImportBookPort",
+        "sourcePath": "src/features/import/application/importBookAsync.ts"
+      },
+      {
+        "fromSymbol": "readProjectAsync",
+        "toType": "BookProject",
+        "sourcePath": "src/features/project/application/readProjectAsync.ts"
+      },
+      {
+        "fromSymbol": "BookProject",
+        "toType": "BookChapter",
+        "sourcePath": "src/types/book.ts"
+      },
+      {
+        "fromSymbol": "BookProject",
+        "toType": "BookExportSettings",
+        "sourcePath": "src/types/book.ts"
+      },
+      {
+        "fromSymbol": "BookProject",
+        "toType": "BookMetadata",
+        "sourcePath": "src/types/book.ts"
+      }
+    ],
+    "componentComposition": []
+  }
+}

@@ -1,0 +1,298 @@
+[
+  {
+    "name": "BookProject",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/book.ts",
+    "sourceLocation": {
+      "filePath": "src/types/book.ts",
+      "line": 1,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "chapters",
+        "kind": "property",
+        "type": "readonly BookChapter[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "export",
+        "kind": "property",
+        "type": "BookExportSettings",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "metadata",
+        "kind": "property",
+        "type": "BookMetadata",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "createProjectAsync",
+    "title": null,
+    "description": "Create a new semantic book project, refusing accidental replacement.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/project/application/createProjectAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/project/application/createProjectAsync.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(input: { readonly directory: string; readonly force: boolean; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "{ readonly directory: string; readonly force: boolean; }",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<void>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "exportBookAsync",
+    "title": null,
+    "description": "Render the same canonical project to one or both publishable output formats.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/export/application/exportBookAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/export/application/exportBookAsync.ts",
+      "line": 23,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(input: { readonly directory: string; readonly formats: readonly (\"epub\" | \"pdf\")[]; readonly outputDirectory?: string; readonly force: boolean; }, port: ExportBookPort) => Promise<readonly string[]>",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "{ readonly directory: string; readonly formats: readonly (\"epub\" | \"pdf\")[]; readonly outputDirectory?: string; readonly force: boolean; }",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "port",
+            "type": "ExportBookPort",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<readonly string[]>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "importBookAsync",
+    "title": null,
+    "description": "Import a supported source into an editable, source-independent book project.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/import/application/importBookAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/import/application/importBookAsync.ts",
+      "line": 22,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(input: { readonly source: string; readonly outputDirectory?: string; readonly force: boolean; }, port: ImportBookPort) => Promise<string>",
+        "parameters": [
+          {
+            "name": "input",
+            "type": "{ readonly source: string; readonly outputDirectory?: string; readonly force: boolean; }",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "port",
+            "type": "ImportBookPort",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<string>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ImportReport",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/book.ts",
+    "sourceLocation": {
+      "filePath": "src/types/book.ts",
+      "line": 26,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "chapters",
+        "kind": "property",
+        "type": "readonly { readonly id: string; readonly source: string; readonly confidence: \"high\" | \"medium\" | \"low\"; }[]",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "format",
+        "kind": "property",
+        "type": "\"epub\" | \"pdf\" | \"markdown\"",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "generatedAt",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "source",
+        "kind": "property",
+        "type": "string",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "warnings",
+        "kind": "property",
+        "type": "readonly string[]",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "readProjectAsync",
+    "title": null,
+    "description": "Read and validate a normalized, editable book project.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/project/application/readProjectAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/project/application/readProjectAsync.ts",
+      "line": 9,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "BookProject"
+    ],
+    "signatures": [
+      {
+        "label": "(directory: string) => Promise<BookProject>",
+        "parameters": [
+          {
+            "name": "directory",
+            "type": "string",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<BookProject>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "validateProjectAsync",
+    "title": null,
+    "description": "Validate editable project inputs and report each missing canonical chapter.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/features/validation/application/validateProjectAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/features/validation/application/validateProjectAsync.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(directory: string) => Promise<readonly string[]>",
+        "parameters": [
+          {
+            "name": "directory",
+            "type": "string",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<readonly string[]>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  }
+]
