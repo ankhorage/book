@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "tooling",
+  "title": "Ankhorage Book",
+  "summary": "Standalone toolkit and CLI for creating, importing, validating, previewing, and exporting editable book projects.",
+  "purpose": "Turn PDF, EPUB, or Markdown material into an editable book project and produce validated EPUB and PDF output through one standalone workflow.",
+  "domain": "book authoring and document conversion",
+  "responsibilities": [
+    "Create and read editable book projects.",
+    "Import supported PDF, EPUB, and Markdown sources with an import report.",
+    "Validate project structure and content before output.",
+    "Preview and export EPUB and PDF artifacts.",
+    "Expose the workflow through package APIs and Ankh CLI capabilities."
+  ],
+  "boundaries": [
+    "Does not require a sibling repository or hidden workspace to create or export a book.",
+    "Does not own a hosted publishing, sales, or digital-rights-management service.",
+    "Does not treat generated EPUB or PDF files as the editable source of truth."
+  ],
+  "audience": [
+    "Authors and editors preparing portable book projects.",
+    "Automation and CLI users converting or validating book content."
+  ],
+  "useCases": [
+    "Initialize a new editable book project.",
+    "Import an existing PDF, EPUB, or Markdown manuscript.",
+    "Validate, preview, and export the project as EPUB and PDF."
+  ],
+  "architecture": {
+    "role": "Feature-first tooling package with application operations for project, import, validation, and export plus a thin CLI provider.",
+    "invariants": [
+      "Editable project data remains separate from generated output formats.",
+      "Format-specific libraries stay behind the importing, previewing, and exporting feature boundaries."
+    ]
+  },
+  "constraints": {
+    "platforms": ["Node.js 24 or later."]
+  }
+}
