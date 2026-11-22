@@ -1,4 +1,5 @@
 graph LR
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
   module_src_cli_bin_ts["src/cli/bin.ts"]
   module_src_cli_commands_export_ts["src/cli/commands/export.ts"]
   module_src_cli_commands_import_ts["src/cli/commands/import.ts"]
@@ -7,9 +8,11 @@ graph LR
   module_src_cli_commands_validate_ts["src/cli/commands/validate.ts"]
   module_src_cli_index_test_ts["src/cli/index.test.ts"]
   module_src_cli_index_ts["src/cli/index.ts"]
+  module_src_cli_provider_test_ts["src/cli/provider.test.ts"]
   module_src_cli_provider_ts["src/cli/provider.ts"]
   module_src_features_export_adapters_exportEpubAsync_ts["src/features/export/adapters/exportEpubAsync.ts"]
   module_src_features_export_adapters_exportPdfAsync_ts["src/features/export/adapters/exportPdfAsync.ts"]
+  module_src_features_export_adapters_parseMarkdownDocument_ts["src/features/export/adapters/parseMarkdownDocument.ts"]
   module_src_features_export_adapters_renderMarkdownAsXhtml_ts["src/features/export/adapters/renderMarkdownAsXhtml.ts"]
   module_src_features_export_application_exportBookAsync_ts["src/features/export/application/exportBookAsync.ts"]
   module_src_features_export_composition_exportBook_ts["src/features/export/composition/exportBook.ts"]
@@ -18,6 +21,8 @@ graph LR
   module_src_features_import_adapters_importMarkdownAsync_ts["src/features/import/adapters/importMarkdownAsync.ts"]
   module_src_features_import_adapters_importPdfAsync_ts["src/features/import/adapters/importPdfAsync.ts"]
   module_src_features_import_adapters_importXhtmlAsMarkdown_ts["src/features/import/adapters/importXhtmlAsMarkdown.ts"]
+  module_src_features_import_adapters_reconstructPdfImport_test_ts["src/features/import/adapters/reconstructPdfImport.test.ts"]
+  module_src_features_import_adapters_reconstructPdfImport_ts["src/features/import/adapters/reconstructPdfImport.ts"]
   module_src_features_import_application_importBookAsync_ts["src/features/import/application/importBookAsync.ts"]
   module_src_features_import_composition_importBook_ts["src/features/import/composition/importBook.ts"]
   module_src_features_preview_application_previewBookAsync_ts["src/features/preview/application/previewBookAsync.ts"]
@@ -39,10 +44,16 @@ graph LR
   module_src_cli_index_ts --> module_src_cli_commands_init_ts
   module_src_cli_index_ts --> module_src_cli_commands_preview_ts
   module_src_cli_index_ts --> module_src_cli_commands_validate_ts
+  module_src_cli_provider_test_ts --> module_src_capabilities_index_ts
+  module_src_cli_provider_test_ts --> module_src_cli_provider_ts
+  module_src_cli_provider_ts --> module_src_capabilities_index_ts
   module_src_cli_provider_ts --> module_src_cli_index_ts
+  module_src_features_export_adapters_exportEpubAsync_ts --> module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportEpubAsync_ts --> module_src_features_export_adapters_renderMarkdownAsXhtml_ts
   module_src_features_export_adapters_exportEpubAsync_ts --> module_src_types_book_ts
+  module_src_features_export_adapters_exportPdfAsync_ts --> module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportPdfAsync_ts --> module_src_types_book_ts
+  module_src_features_export_adapters_renderMarkdownAsXhtml_ts --> module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_application_exportBookAsync_ts --> module_src_types_book_ts
   module_src_features_export_composition_exportBook_ts --> module_src_features_export_adapters_exportEpubAsync_ts
   module_src_features_export_composition_exportBook_ts --> module_src_features_export_adapters_exportPdfAsync_ts
@@ -55,6 +66,9 @@ graph LR
   module_src_features_import_adapters_importEpubAsync_ts --> module_src_features_import_adapters_importXhtmlAsMarkdown_ts
   module_src_features_import_adapters_importMarkdownAsync_ts --> module_src_types_book_ts
   module_src_features_import_adapters_importPdfAsync_ts --> module_src_features_import_adapters_importMarkdownAsync_ts
+  module_src_features_import_adapters_importPdfAsync_ts --> module_src_features_import_adapters_reconstructPdfImport_ts
+  module_src_features_import_adapters_importPdfAsync_ts --> module_src_types_book_ts
+  module_src_features_import_adapters_reconstructPdfImport_test_ts --> module_src_features_import_adapters_reconstructPdfImport_ts
   module_src_features_import_application_importBookAsync_ts --> module_src_types_book_ts
   module_src_features_import_composition_importBook_ts --> module_src_features_import_adapters_importBookSourceAsync_ts
   module_src_features_import_composition_importBook_ts --> module_src_features_import_application_importBookAsync_ts

@@ -32,7 +32,7 @@ Create a new semantic book project, refusing accidental replacement.
 
 Kind: `function`
 Module: `src/features/export/application/exportBookAsync.ts`
-Source: `src/features/export/application/exportBookAsync.ts:23:1`
+Source: `src/features/export/application/exportBookAsync.ts:25:1`
 
 Render the same canonical project to one or both publishable output formats.
 
@@ -71,6 +71,7 @@ Source: `src/types/book.ts:26:1`
 | chapters | property | `readonly { readonly id: string; readonly source: string; readonly confidence: "high" \| "medium" \| "low"; }[]` | yes |  |
 | format | property | `"epub" \| "pdf" \| "markdown"` | yes |  |
 | generatedAt | property | `string` | yes |  |
+| metadata | property | `Partial<Record<"author" \| "language" \| "title", { readonly confidence: "high" \| "medium" \| "low"; readonly source: string; }>> \| undefined` | no |  |
 | source | property | `string` | yes |  |
 | warnings | property | `readonly string[]` | yes |  |
 

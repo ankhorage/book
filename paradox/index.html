@@ -169,17 +169,22 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/export/adapters/exportEpubAsync.ts">
       src/features/export/adapters/exportEpubAsync.ts
-      <small>6 functions</small>
+      <small>12 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/export/adapters/exportPdfAsync.ts">
       src/features/export/adapters/exportPdfAsync.ts
+      <small>11 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/export/adapters/parseMarkdownDocument.ts">
+      src/features/export/adapters/parseMarkdownDocument.ts
       <small>4 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/export/adapters/renderMarkdownAsXhtml.ts">
       src/features/export/adapters/renderMarkdownAsXhtml.ts
-      <small>1 function</small>
+      <small>7 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/export/application/exportBookAsync.ts">
@@ -199,7 +204,7 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/import/adapters/importEpubAsync.ts">
       src/features/import/adapters/importEpubAsync.ts
-      <small>10 functions</small>
+      <small>11 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/import/adapters/importMarkdownAsync.ts">
@@ -209,12 +214,22 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/import/adapters/importPdfAsync.ts">
       src/features/import/adapters/importPdfAsync.ts
-      <small>2 functions</small>
+      <small>9 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/import/adapters/importXhtmlAsMarkdown.ts">
       src/features/import/adapters/importXhtmlAsMarkdown.ts
       <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/import/adapters/reconstructPdfImport.test.ts">
+      src/features/import/adapters/reconstructPdfImport.test.ts
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/features/import/adapters/reconstructPdfImport.ts">
+      src/features/import/adapters/reconstructPdfImport.ts
+      <small>9 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/features/import/application/importBookAsync.ts">
@@ -268,7 +283,7 @@
       <div class="summary">
         <div><strong>7</strong><span class="muted">public exports</span></div>
         <div><strong>0</strong><span class="muted">components</span></div>
-        <div><strong>29</strong><span class="muted">modules</span></div>
+        <div><strong>34</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -276,11 +291,23 @@
         <li><code>src/index.ts</code></li>
       </ul>
     </section>
+    <section class="panel" data-search="usage ankh book --help">
+    <h2>Usage</h2>
+    <article class="item">
+      <h3>CLI</h3>
+      <pre>ankh book --help</pre>
+    </article>
     
+  </section>
     <section class="panel"><h2>Policy</h2><p>No documentation findings.</p></section>
     <section class="panel">
       <h2>Modules</h2>
-      <article class="item" data-search="src/cli/bin.ts src/cli/index.ts">
+      <article class="item" data-search="src/capabilities/index.ts CAPABILITIES">
+    <h3>src/capabilities/index.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>CAPABILITIES</code></p>
+  </article><article class="item" data-search="src/cli/bin.ts src/cli/index.ts">
     <h3>src/cli/bin.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/cli/index.ts</code></p>
@@ -320,25 +347,35 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/cli/commands/export.ts</code>, <code>src/cli/commands/import.ts</code>, <code>src/cli/commands/init.ts</code>, <code>src/cli/commands/preview.ts</code>, <code>src/cli/commands/validate.ts</code></p>
     <p><strong>Exports:</strong> <code>runBookCliAsync</code></p>
-  </article><article class="item" data-search="src/cli/provider.ts src/cli/index.ts default">
+  </article><article class="item" data-search="src/cli/provider.test.ts src/capabilities/index.ts src/cli/provider.ts">
+    <h3>src/cli/provider.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/capabilities/index.ts</code>, <code>src/cli/provider.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/cli/provider.ts src/capabilities/index.ts src/cli/index.ts default">
     <h3>src/cli/provider.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/cli/index.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/capabilities/index.ts</code>, <code>src/cli/index.ts</code></p>
     <p><strong>Exports:</strong> <code>default</code></p>
-  </article><article class="item" data-search="src/features/export/adapters/exportEpubAsync.ts src/features/export/adapters/renderMarkdownAsXhtml.ts src/types/book.ts exportEpubAsync">
+  </article><article class="item" data-search="src/features/export/adapters/exportEpubAsync.ts src/features/export/adapters/parseMarkdownDocument.ts src/features/export/adapters/renderMarkdownAsXhtml.ts src/types/book.ts exportEpubAsync">
     <h3>src/features/export/adapters/exportEpubAsync.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/features/export/adapters/renderMarkdownAsXhtml.ts</code>, <code>src/types/book.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/features/export/adapters/parseMarkdownDocument.ts</code>, <code>src/features/export/adapters/renderMarkdownAsXhtml.ts</code>, <code>src/types/book.ts</code></p>
     <p><strong>Exports:</strong> <code>exportEpubAsync</code></p>
-  </article><article class="item" data-search="src/features/export/adapters/exportPdfAsync.ts src/types/book.ts exportPdfAsync">
+  </article><article class="item" data-search="src/features/export/adapters/exportPdfAsync.ts src/features/export/adapters/parseMarkdownDocument.ts src/types/book.ts exportPdfAsync">
     <h3>src/features/export/adapters/exportPdfAsync.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/types/book.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/features/export/adapters/parseMarkdownDocument.ts</code>, <code>src/types/book.ts</code></p>
     <p><strong>Exports:</strong> <code>exportPdfAsync</code></p>
-  </article><article class="item" data-search="src/features/export/adapters/renderMarkdownAsXhtml.ts renderMarkdownAsXhtml">
-    <h3>src/features/export/adapters/renderMarkdownAsXhtml.ts</h3>
+  </article><article class="item" data-search="src/features/export/adapters/parseMarkdownDocument.ts BookBlock BookInline parseMarkdownDocument">
+    <h3>src/features/export/adapters/parseMarkdownDocument.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>BookBlock</code>, <code>BookInline</code>, <code>parseMarkdownDocument</code></p>
+  </article><article class="item" data-search="src/features/export/adapters/renderMarkdownAsXhtml.ts src/features/export/adapters/parseMarkdownDocument.ts renderMarkdownAsXhtml">
+    <h3>src/features/export/adapters/renderMarkdownAsXhtml.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/export/adapters/parseMarkdownDocument.ts</code></p>
     <p><strong>Exports:</strong> <code>renderMarkdownAsXhtml</code></p>
   </article><article class="item" data-search="src/features/export/application/exportBookAsync.ts src/types/book.ts exportBookAsync ExportBookPort">
     <h3>src/features/export/application/exportBookAsync.ts</h3>
@@ -365,16 +402,26 @@
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/types/book.ts</code></p>
     <p><strong>Exports:</strong> <code>importMarkdown</code></p>
-  </article><article class="item" data-search="src/features/import/adapters/importPdfAsync.ts src/features/import/adapters/importMarkdownAsync.ts importPdfAsync">
+  </article><article class="item" data-search="src/features/import/adapters/importPdfAsync.ts src/features/import/adapters/importMarkdownAsync.ts src/features/import/adapters/reconstructPdfImport.ts src/types/book.ts importPdfAsync">
     <h3>src/features/import/adapters/importPdfAsync.ts</h3>
     <p class="muted">Referenced module</p>
-    <p><strong>Dependencies:</strong> <code>src/features/import/adapters/importMarkdownAsync.ts</code></p>
+    <p><strong>Dependencies:</strong> <code>src/features/import/adapters/importMarkdownAsync.ts</code>, <code>src/features/import/adapters/reconstructPdfImport.ts</code>, <code>src/types/book.ts</code></p>
     <p><strong>Exports:</strong> <code>importPdfAsync</code></p>
   </article><article class="item" data-search="src/features/import/adapters/importXhtmlAsMarkdown.ts importXhtmlAsMarkdown">
     <h3>src/features/import/adapters/importXhtmlAsMarkdown.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>importXhtmlAsMarkdown</code></p>
+  </article><article class="item" data-search="src/features/import/adapters/reconstructPdfImport.test.ts src/features/import/adapters/reconstructPdfImport.ts">
+    <h3>src/features/import/adapters/reconstructPdfImport.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/features/import/adapters/reconstructPdfImport.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/features/import/adapters/reconstructPdfImport.ts reconstructPdfImport">
+    <h3>src/features/import/adapters/reconstructPdfImport.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>reconstructPdfImport</code></p>
   </article><article class="item" data-search="src/features/import/application/importBookAsync.ts src/types/book.ts importBookAsync ImportBookPort">
     <h3>src/features/import/application/importBookAsync.ts</h3>
     <p class="muted">Referenced module</p>
@@ -435,7 +482,7 @@
               <article class="item" id="symbol-exportbookasync" data-search="exportBookAsync  function src/features/export/application/exportBookAsync.ts Render the same canonical project to one or both publishable output formats. (input: { readonly directory: string; readonly formats: readonly (&quot;epub&quot; | &quot;pdf&quot;)[]; readonly outputDirectory?: string; readonly force: boolean; }, port: ExportBookPort) =&gt; Promise&lt;readonly string[]&gt;">
     <h4>exportBookAsync</h4>
     
-    <p class="muted">function • <code>src/features/export/application/exportBookAsync.ts:23:1</code></p>
+    <p class="muted">function • <code>src/features/export/application/exportBookAsync.ts:25:1</code></p>
     <p>Render the same canonical project to one or both publishable output formats.</p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
@@ -651,6 +698,12 @@
             <td>yes</td>
             <td></td>
           </tr><tr>
+            <td><code>metadata</code></td>
+            <td>property</td>
+            <td><code>Partial&lt;Record&lt;&quot;author&quot; | &quot;language&quot; | &quot;title&quot;, { readonly confidence: &quot;high&quot; | &quot;medium&quot; | &quot;low&quot;; readonly source: string; }&gt;&gt; | undefined</code></td>
+            <td>no</td>
+            <td></td>
+          </tr><tr>
             <td><code>source</code></td>
             <td>property</td>
             <td><code>string</code></td>
@@ -681,6 +734,8 @@
   package__ankhorage_book[&quot;Book&quot;]
   entrypoint_src_index_ts[&quot;src/index.ts&quot;]
   package__ankhorage_book --&gt; entrypoint_src_index_ts
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_capabilities_index_ts
   module_src_cli_bin_ts[&quot;src/cli/bin.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_cli_bin_ts
   module_src_cli_bin_ts --&gt; module_src_cli_index_ts
@@ -708,18 +763,28 @@
   module_src_cli_index_ts --&gt; module_src_cli_commands_init_ts
   module_src_cli_index_ts --&gt; module_src_cli_commands_preview_ts
   module_src_cli_index_ts --&gt; module_src_cli_commands_validate_ts
+  module_src_cli_provider_test_ts[&quot;src/cli/provider.test.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_cli_provider_test_ts
+  module_src_cli_provider_test_ts --&gt; module_src_capabilities_index_ts
+  module_src_cli_provider_test_ts --&gt; module_src_cli_provider_ts
   module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_cli_provider_ts
+  module_src_cli_provider_ts --&gt; module_src_capabilities_index_ts
   module_src_cli_provider_ts --&gt; module_src_cli_index_ts
   module_src_features_export_adapters_exportEpubAsync_ts[&quot;src/features/export/adapters/exportEpubAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_export_adapters_exportEpubAsync_ts
+  module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_features_export_adapters_renderMarkdownAsXhtml_ts
   module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_types_book_ts
   module_src_features_export_adapters_exportPdfAsync_ts[&quot;src/features/export/adapters/exportPdfAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_export_adapters_exportPdfAsync_ts
+  module_src_features_export_adapters_exportPdfAsync_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportPdfAsync_ts --&gt; module_src_types_book_ts
+  module_src_features_export_adapters_parseMarkdownDocument_ts[&quot;src/features/export/adapters/parseMarkdownDocument.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_renderMarkdownAsXhtml_ts[&quot;src/features/export/adapters/renderMarkdownAsXhtml.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_export_adapters_renderMarkdownAsXhtml_ts
+  module_src_features_export_adapters_renderMarkdownAsXhtml_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_application_exportBookAsync_ts[&quot;src/features/export/application/exportBookAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_export_application_exportBookAsync_ts
   module_src_features_export_application_exportBookAsync_ts --&gt; module_src_types_book_ts
@@ -744,8 +809,15 @@
   module_src_features_import_adapters_importPdfAsync_ts[&quot;src/features/import/adapters/importPdfAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_import_adapters_importPdfAsync_ts
   module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_features_import_adapters_importMarkdownAsync_ts
+  module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_features_import_adapters_reconstructPdfImport_ts
+  module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_types_book_ts
   module_src_features_import_adapters_importXhtmlAsMarkdown_ts[&quot;src/features/import/adapters/importXhtmlAsMarkdown.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_import_adapters_importXhtmlAsMarkdown_ts
+  module_src_features_import_adapters_reconstructPdfImport_test_ts[&quot;src/features/import/adapters/reconstructPdfImport.test.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_features_import_adapters_reconstructPdfImport_test_ts
+  module_src_features_import_adapters_reconstructPdfImport_test_ts --&gt; module_src_features_import_adapters_reconstructPdfImport_ts
+  module_src_features_import_adapters_reconstructPdfImport_ts[&quot;src/features/import/adapters/reconstructPdfImport.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_features_import_adapters_reconstructPdfImport_ts
   module_src_features_import_application_importBookAsync_ts[&quot;src/features/import/application/importBookAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_import_application_importBookAsync_ts
   module_src_features_import_application_importBookAsync_ts --&gt; module_src_types_book_ts
@@ -782,6 +854,8 @@
   package__ankhorage_book[&quot;Book&quot;]
   entrypoint_src_index_ts[&quot;src/index.ts&quot;]
   package__ankhorage_book --&gt; entrypoint_src_index_ts
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_capabilities_index_ts
   module_src_cli_bin_ts[&quot;src/cli/bin.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_cli_bin_ts
   module_src_cli_bin_ts --&gt; module_src_cli_index_ts
@@ -809,18 +883,28 @@
   module_src_cli_index_ts --&gt; module_src_cli_commands_init_ts
   module_src_cli_index_ts --&gt; module_src_cli_commands_preview_ts
   module_src_cli_index_ts --&gt; module_src_cli_commands_validate_ts
+  module_src_cli_provider_test_ts[&quot;src/cli/provider.test.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_cli_provider_test_ts
+  module_src_cli_provider_test_ts --&gt; module_src_capabilities_index_ts
+  module_src_cli_provider_test_ts --&gt; module_src_cli_provider_ts
   module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_cli_provider_ts
+  module_src_cli_provider_ts --&gt; module_src_capabilities_index_ts
   module_src_cli_provider_ts --&gt; module_src_cli_index_ts
   module_src_features_export_adapters_exportEpubAsync_ts[&quot;src/features/export/adapters/exportEpubAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_export_adapters_exportEpubAsync_ts
+  module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_features_export_adapters_renderMarkdownAsXhtml_ts
   module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_types_book_ts
   module_src_features_export_adapters_exportPdfAsync_ts[&quot;src/features/export/adapters/exportPdfAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_export_adapters_exportPdfAsync_ts
+  module_src_features_export_adapters_exportPdfAsync_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportPdfAsync_ts --&gt; module_src_types_book_ts
+  module_src_features_export_adapters_parseMarkdownDocument_ts[&quot;src/features/export/adapters/parseMarkdownDocument.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_renderMarkdownAsXhtml_ts[&quot;src/features/export/adapters/renderMarkdownAsXhtml.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_export_adapters_renderMarkdownAsXhtml_ts
+  module_src_features_export_adapters_renderMarkdownAsXhtml_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_application_exportBookAsync_ts[&quot;src/features/export/application/exportBookAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_export_application_exportBookAsync_ts
   module_src_features_export_application_exportBookAsync_ts --&gt; module_src_types_book_ts
@@ -845,8 +929,15 @@
   module_src_features_import_adapters_importPdfAsync_ts[&quot;src/features/import/adapters/importPdfAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_import_adapters_importPdfAsync_ts
   module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_features_import_adapters_importMarkdownAsync_ts
+  module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_features_import_adapters_reconstructPdfImport_ts
+  module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_types_book_ts
   module_src_features_import_adapters_importXhtmlAsMarkdown_ts[&quot;src/features/import/adapters/importXhtmlAsMarkdown.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_import_adapters_importXhtmlAsMarkdown_ts
+  module_src_features_import_adapters_reconstructPdfImport_test_ts[&quot;src/features/import/adapters/reconstructPdfImport.test.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_features_import_adapters_reconstructPdfImport_test_ts
+  module_src_features_import_adapters_reconstructPdfImport_test_ts --&gt; module_src_features_import_adapters_reconstructPdfImport_ts
+  module_src_features_import_adapters_reconstructPdfImport_ts[&quot;src/features/import/adapters/reconstructPdfImport.ts&quot;]
+  package__ankhorage_book -.-&gt; module_src_features_import_adapters_reconstructPdfImport_ts
   module_src_features_import_application_importBookAsync_ts[&quot;src/features/import/application/importBookAsync.ts&quot;]
   package__ankhorage_book -.-&gt; module_src_features_import_application_importBookAsync_ts
   module_src_features_import_application_importBookAsync_ts --&gt; module_src_types_book_ts
@@ -882,6 +973,7 @@
     <h3>Module relationships</h3>
     <p class="muted"><code>diagrams/module-relationships.mmd</code></p>
     <div class="mermaid">graph LR
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_cli_bin_ts[&quot;src/cli/bin.ts&quot;]
   module_src_cli_commands_export_ts[&quot;src/cli/commands/export.ts&quot;]
   module_src_cli_commands_import_ts[&quot;src/cli/commands/import.ts&quot;]
@@ -890,9 +982,11 @@
   module_src_cli_commands_validate_ts[&quot;src/cli/commands/validate.ts&quot;]
   module_src_cli_index_test_ts[&quot;src/cli/index.test.ts&quot;]
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
+  module_src_cli_provider_test_ts[&quot;src/cli/provider.test.ts&quot;]
   module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
   module_src_features_export_adapters_exportEpubAsync_ts[&quot;src/features/export/adapters/exportEpubAsync.ts&quot;]
   module_src_features_export_adapters_exportPdfAsync_ts[&quot;src/features/export/adapters/exportPdfAsync.ts&quot;]
+  module_src_features_export_adapters_parseMarkdownDocument_ts[&quot;src/features/export/adapters/parseMarkdownDocument.ts&quot;]
   module_src_features_export_adapters_renderMarkdownAsXhtml_ts[&quot;src/features/export/adapters/renderMarkdownAsXhtml.ts&quot;]
   module_src_features_export_application_exportBookAsync_ts[&quot;src/features/export/application/exportBookAsync.ts&quot;]
   module_src_features_export_composition_exportBook_ts[&quot;src/features/export/composition/exportBook.ts&quot;]
@@ -901,6 +995,8 @@
   module_src_features_import_adapters_importMarkdownAsync_ts[&quot;src/features/import/adapters/importMarkdownAsync.ts&quot;]
   module_src_features_import_adapters_importPdfAsync_ts[&quot;src/features/import/adapters/importPdfAsync.ts&quot;]
   module_src_features_import_adapters_importXhtmlAsMarkdown_ts[&quot;src/features/import/adapters/importXhtmlAsMarkdown.ts&quot;]
+  module_src_features_import_adapters_reconstructPdfImport_test_ts[&quot;src/features/import/adapters/reconstructPdfImport.test.ts&quot;]
+  module_src_features_import_adapters_reconstructPdfImport_ts[&quot;src/features/import/adapters/reconstructPdfImport.ts&quot;]
   module_src_features_import_application_importBookAsync_ts[&quot;src/features/import/application/importBookAsync.ts&quot;]
   module_src_features_import_composition_importBook_ts[&quot;src/features/import/composition/importBook.ts&quot;]
   module_src_features_preview_application_previewBookAsync_ts[&quot;src/features/preview/application/previewBookAsync.ts&quot;]
@@ -922,10 +1018,16 @@
   module_src_cli_index_ts --&gt; module_src_cli_commands_init_ts
   module_src_cli_index_ts --&gt; module_src_cli_commands_preview_ts
   module_src_cli_index_ts --&gt; module_src_cli_commands_validate_ts
+  module_src_cli_provider_test_ts --&gt; module_src_capabilities_index_ts
+  module_src_cli_provider_test_ts --&gt; module_src_cli_provider_ts
+  module_src_cli_provider_ts --&gt; module_src_capabilities_index_ts
   module_src_cli_provider_ts --&gt; module_src_cli_index_ts
+  module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_features_export_adapters_renderMarkdownAsXhtml_ts
   module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_types_book_ts
+  module_src_features_export_adapters_exportPdfAsync_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportPdfAsync_ts --&gt; module_src_types_book_ts
+  module_src_features_export_adapters_renderMarkdownAsXhtml_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_application_exportBookAsync_ts --&gt; module_src_types_book_ts
   module_src_features_export_composition_exportBook_ts --&gt; module_src_features_export_adapters_exportEpubAsync_ts
   module_src_features_export_composition_exportBook_ts --&gt; module_src_features_export_adapters_exportPdfAsync_ts
@@ -938,6 +1040,9 @@
   module_src_features_import_adapters_importEpubAsync_ts --&gt; module_src_features_import_adapters_importXhtmlAsMarkdown_ts
   module_src_features_import_adapters_importMarkdownAsync_ts --&gt; module_src_types_book_ts
   module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_features_import_adapters_importMarkdownAsync_ts
+  module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_features_import_adapters_reconstructPdfImport_ts
+  module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_types_book_ts
+  module_src_features_import_adapters_reconstructPdfImport_test_ts --&gt; module_src_features_import_adapters_reconstructPdfImport_ts
   module_src_features_import_application_importBookAsync_ts --&gt; module_src_types_book_ts
   module_src_features_import_composition_importBook_ts --&gt; module_src_features_import_adapters_importBookSourceAsync_ts
   module_src_features_import_composition_importBook_ts --&gt; module_src_features_import_application_importBookAsync_ts
@@ -952,6 +1057,7 @@
     <details>
       <summary>View Mermaid source</summary>
       <pre>graph LR
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_cli_bin_ts[&quot;src/cli/bin.ts&quot;]
   module_src_cli_commands_export_ts[&quot;src/cli/commands/export.ts&quot;]
   module_src_cli_commands_import_ts[&quot;src/cli/commands/import.ts&quot;]
@@ -960,9 +1066,11 @@
   module_src_cli_commands_validate_ts[&quot;src/cli/commands/validate.ts&quot;]
   module_src_cli_index_test_ts[&quot;src/cli/index.test.ts&quot;]
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
+  module_src_cli_provider_test_ts[&quot;src/cli/provider.test.ts&quot;]
   module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
   module_src_features_export_adapters_exportEpubAsync_ts[&quot;src/features/export/adapters/exportEpubAsync.ts&quot;]
   module_src_features_export_adapters_exportPdfAsync_ts[&quot;src/features/export/adapters/exportPdfAsync.ts&quot;]
+  module_src_features_export_adapters_parseMarkdownDocument_ts[&quot;src/features/export/adapters/parseMarkdownDocument.ts&quot;]
   module_src_features_export_adapters_renderMarkdownAsXhtml_ts[&quot;src/features/export/adapters/renderMarkdownAsXhtml.ts&quot;]
   module_src_features_export_application_exportBookAsync_ts[&quot;src/features/export/application/exportBookAsync.ts&quot;]
   module_src_features_export_composition_exportBook_ts[&quot;src/features/export/composition/exportBook.ts&quot;]
@@ -971,6 +1079,8 @@
   module_src_features_import_adapters_importMarkdownAsync_ts[&quot;src/features/import/adapters/importMarkdownAsync.ts&quot;]
   module_src_features_import_adapters_importPdfAsync_ts[&quot;src/features/import/adapters/importPdfAsync.ts&quot;]
   module_src_features_import_adapters_importXhtmlAsMarkdown_ts[&quot;src/features/import/adapters/importXhtmlAsMarkdown.ts&quot;]
+  module_src_features_import_adapters_reconstructPdfImport_test_ts[&quot;src/features/import/adapters/reconstructPdfImport.test.ts&quot;]
+  module_src_features_import_adapters_reconstructPdfImport_ts[&quot;src/features/import/adapters/reconstructPdfImport.ts&quot;]
   module_src_features_import_application_importBookAsync_ts[&quot;src/features/import/application/importBookAsync.ts&quot;]
   module_src_features_import_composition_importBook_ts[&quot;src/features/import/composition/importBook.ts&quot;]
   module_src_features_preview_application_previewBookAsync_ts[&quot;src/features/preview/application/previewBookAsync.ts&quot;]
@@ -992,10 +1102,16 @@
   module_src_cli_index_ts --&gt; module_src_cli_commands_init_ts
   module_src_cli_index_ts --&gt; module_src_cli_commands_preview_ts
   module_src_cli_index_ts --&gt; module_src_cli_commands_validate_ts
+  module_src_cli_provider_test_ts --&gt; module_src_capabilities_index_ts
+  module_src_cli_provider_test_ts --&gt; module_src_cli_provider_ts
+  module_src_cli_provider_ts --&gt; module_src_capabilities_index_ts
   module_src_cli_provider_ts --&gt; module_src_cli_index_ts
+  module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_features_export_adapters_renderMarkdownAsXhtml_ts
   module_src_features_export_adapters_exportEpubAsync_ts --&gt; module_src_types_book_ts
+  module_src_features_export_adapters_exportPdfAsync_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_adapters_exportPdfAsync_ts --&gt; module_src_types_book_ts
+  module_src_features_export_adapters_renderMarkdownAsXhtml_ts --&gt; module_src_features_export_adapters_parseMarkdownDocument_ts
   module_src_features_export_application_exportBookAsync_ts --&gt; module_src_types_book_ts
   module_src_features_export_composition_exportBook_ts --&gt; module_src_features_export_adapters_exportEpubAsync_ts
   module_src_features_export_composition_exportBook_ts --&gt; module_src_features_export_adapters_exportPdfAsync_ts
@@ -1008,6 +1124,9 @@
   module_src_features_import_adapters_importEpubAsync_ts --&gt; module_src_features_import_adapters_importXhtmlAsMarkdown_ts
   module_src_features_import_adapters_importMarkdownAsync_ts --&gt; module_src_types_book_ts
   module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_features_import_adapters_importMarkdownAsync_ts
+  module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_features_import_adapters_reconstructPdfImport_ts
+  module_src_features_import_adapters_importPdfAsync_ts --&gt; module_src_types_book_ts
+  module_src_features_import_adapters_reconstructPdfImport_test_ts --&gt; module_src_features_import_adapters_reconstructPdfImport_ts
   module_src_features_import_application_importBookAsync_ts --&gt; module_src_types_book_ts
   module_src_features_import_composition_importBook_ts --&gt; module_src_features_import_adapters_importBookSourceAsync_ts
   module_src_features_import_composition_importBook_ts --&gt; module_src_features_import_application_importBookAsync_ts
@@ -1024,6 +1143,7 @@
     <h3>Export graph</h3>
     <p class="muted"><code>diagrams/export-graph.mmd</code></p>
     <div class="mermaid">graph LR
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_cli_bin_ts[&quot;src/cli/bin.ts&quot;]
   module_src_cli_commands_export_ts[&quot;src/cli/commands/export.ts&quot;]
   module_src_cli_commands_import_ts[&quot;src/cli/commands/import.ts&quot;]
@@ -1032,9 +1152,11 @@
   module_src_cli_commands_validate_ts[&quot;src/cli/commands/validate.ts&quot;]
   module_src_cli_index_test_ts[&quot;src/cli/index.test.ts&quot;]
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
+  module_src_cli_provider_test_ts[&quot;src/cli/provider.test.ts&quot;]
   module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
   module_src_features_export_adapters_exportEpubAsync_ts[&quot;src/features/export/adapters/exportEpubAsync.ts&quot;]
   module_src_features_export_adapters_exportPdfAsync_ts[&quot;src/features/export/adapters/exportPdfAsync.ts&quot;]
+  module_src_features_export_adapters_parseMarkdownDocument_ts[&quot;src/features/export/adapters/parseMarkdownDocument.ts&quot;]
   module_src_features_export_adapters_renderMarkdownAsXhtml_ts[&quot;src/features/export/adapters/renderMarkdownAsXhtml.ts&quot;]
   module_src_features_export_application_exportBookAsync_ts[&quot;src/features/export/application/exportBookAsync.ts&quot;]
   module_src_features_export_composition_exportBook_ts[&quot;src/features/export/composition/exportBook.ts&quot;]
@@ -1043,6 +1165,8 @@
   module_src_features_import_adapters_importMarkdownAsync_ts[&quot;src/features/import/adapters/importMarkdownAsync.ts&quot;]
   module_src_features_import_adapters_importPdfAsync_ts[&quot;src/features/import/adapters/importPdfAsync.ts&quot;]
   module_src_features_import_adapters_importXhtmlAsMarkdown_ts[&quot;src/features/import/adapters/importXhtmlAsMarkdown.ts&quot;]
+  module_src_features_import_adapters_reconstructPdfImport_test_ts[&quot;src/features/import/adapters/reconstructPdfImport.test.ts&quot;]
+  module_src_features_import_adapters_reconstructPdfImport_ts[&quot;src/features/import/adapters/reconstructPdfImport.ts&quot;]
   module_src_features_import_application_importBookAsync_ts[&quot;src/features/import/application/importBookAsync.ts&quot;]
   module_src_features_import_composition_importBook_ts[&quot;src/features/import/composition/importBook.ts&quot;]
   module_src_features_preview_application_previewBookAsync_ts[&quot;src/features/preview/application/previewBookAsync.ts&quot;]
@@ -1072,6 +1196,7 @@
     <details>
       <summary>View Mermaid source</summary>
       <pre>graph LR
+  module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_cli_bin_ts[&quot;src/cli/bin.ts&quot;]
   module_src_cli_commands_export_ts[&quot;src/cli/commands/export.ts&quot;]
   module_src_cli_commands_import_ts[&quot;src/cli/commands/import.ts&quot;]
@@ -1080,9 +1205,11 @@
   module_src_cli_commands_validate_ts[&quot;src/cli/commands/validate.ts&quot;]
   module_src_cli_index_test_ts[&quot;src/cli/index.test.ts&quot;]
   module_src_cli_index_ts[&quot;src/cli/index.ts&quot;]
+  module_src_cli_provider_test_ts[&quot;src/cli/provider.test.ts&quot;]
   module_src_cli_provider_ts[&quot;src/cli/provider.ts&quot;]
   module_src_features_export_adapters_exportEpubAsync_ts[&quot;src/features/export/adapters/exportEpubAsync.ts&quot;]
   module_src_features_export_adapters_exportPdfAsync_ts[&quot;src/features/export/adapters/exportPdfAsync.ts&quot;]
+  module_src_features_export_adapters_parseMarkdownDocument_ts[&quot;src/features/export/adapters/parseMarkdownDocument.ts&quot;]
   module_src_features_export_adapters_renderMarkdownAsXhtml_ts[&quot;src/features/export/adapters/renderMarkdownAsXhtml.ts&quot;]
   module_src_features_export_application_exportBookAsync_ts[&quot;src/features/export/application/exportBookAsync.ts&quot;]
   module_src_features_export_composition_exportBook_ts[&quot;src/features/export/composition/exportBook.ts&quot;]
@@ -1091,6 +1218,8 @@
   module_src_features_import_adapters_importMarkdownAsync_ts[&quot;src/features/import/adapters/importMarkdownAsync.ts&quot;]
   module_src_features_import_adapters_importPdfAsync_ts[&quot;src/features/import/adapters/importPdfAsync.ts&quot;]
   module_src_features_import_adapters_importXhtmlAsMarkdown_ts[&quot;src/features/import/adapters/importXhtmlAsMarkdown.ts&quot;]
+  module_src_features_import_adapters_reconstructPdfImport_test_ts[&quot;src/features/import/adapters/reconstructPdfImport.test.ts&quot;]
+  module_src_features_import_adapters_reconstructPdfImport_ts[&quot;src/features/import/adapters/reconstructPdfImport.ts&quot;]
   module_src_features_import_application_importBookAsync_ts[&quot;src/features/import/application/importBookAsync.ts&quot;]
   module_src_features_import_composition_importBook_ts[&quot;src/features/import/composition/importBook.ts&quot;]
   module_src_features_preview_application_previewBookAsync_ts[&quot;src/features/preview/application/previewBookAsync.ts&quot;]
@@ -1241,7 +1370,7 @@
       <h2>src/cli/provider.ts</h2>
       <article class="item" data-search="packageVersion src/cli/provider.ts Read the release version used in the provider manifest.">
     <h3>packageVersion</h3>
-    <p class="muted"><code>src/cli/provider.ts:38:1</code></p>
+    <p class="muted"><code>src/cli/provider.ts:36:1</code></p>
     <p>Read the release version used in the provider manifest.</p>
     
   </article>
@@ -1251,32 +1380,62 @@
       <h2>src/features/export/adapters/exportEpubAsync.ts</h2>
       <article class="item" data-search="exportEpubAsync src/features/export/adapters/exportEpubAsync.ts Generate a reflowable EPUB 3 archive with navigation, spine, and semantic chapter XHTML.">
     <h3>exportEpubAsync</h3>
-    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:9:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:11:1</code></p>
     <p>Generate a reflowable EPUB 3 archive with navigation, spine, and semantic chapter XHTML.</p>
+    
+  </article><article class="item" data-search="writeChaptersAsync src/features/export/adapters/exportEpubAsync.ts Write each semantic chapter in its canonical reading order.">
+    <h3>writeChaptersAsync</h3>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:56:1</code></p>
+    <p>Write each semantic chapter in its canonical reading order.</p>
     
   </article><article class="item" data-search="navigation src/features/export/adapters/exportEpubAsync.ts Render EPUB navigation from the canonical chapter order.">
     <h3>navigation</h3>
-    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:45:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:76:1</code></p>
     <p>Render EPUB navigation from the canonical chapter order.</p>
     
   </article><article class="item" data-search="xhtml src/features/export/adapters/exportEpubAsync.ts Render semantic Markdown through an AST instead of flattening every block into paragraphs.">
     <h3>xhtml</h3>
-    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:50:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:81:1</code></p>
     <p>Render semantic Markdown through an AST instead of flattening every block into paragraphs.</p>
     
   </article><article class="item" data-search="packageDocument src/features/export/adapters/exportEpubAsync.ts Render the EPUB package manifest and ordered reading spine.">
     <h3>packageDocument</h3>
-    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:56:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:91:1</code></p>
     <p>Render the EPUB package manifest and ordered reading spine.</p>
+    
+  </article><article class="item" data-search="publicationAssetsAsync src/features/export/adapters/exportEpubAsync.ts Copy local Markdown image references into the EPUB and reject paths outside the project.">
+    <h3>publicationAssetsAsync</h3>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:108:1</code></p>
+    <p>Copy local Markdown image references into the EPUB and reject paths outside the project.</p>
+    
+  </article><article class="item" data-search="imageUrls src/features/export/adapters/exportEpubAsync.ts Read local image URLs from the shared semantic document.">
+    <h3>imageUrls</h3>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:139:1</code></p>
+    <p>Read local image URLs from the shared semantic document.</p>
+    
+  </article><article class="item" data-search="imageUrlsFromBlock src/features/export/adapters/exportEpubAsync.ts Traverse one semantic block for image inline nodes.">
+    <h3>imageUrlsFromBlock</h3>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:144:1</code></p>
+    <p>Traverse one semantic block for image inline nodes.</p>
+    
+  </article><article class="item" data-search="imageUrlsFromInlines src/features/export/adapters/exportEpubAsync.ts Traverse one inline sequence for images.">
+    <h3>imageUrlsFromInlines</h3>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:152:1</code></p>
+    <p>Traverse one inline sequence for images.</p>
+    
+  </article><article class="item" data-search="mediaTypeFor src/features/export/adapters/exportEpubAsync.ts Map supported embedded image extensions to EPUB manifest media types.">
+    <h3>mediaTypeFor</h3>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:163:1</code></p>
+    <p>Map supported embedded image extensions to EPUB manifest media types.</p>
     
   </article><article class="item" data-search="escape src/features/export/adapters/exportEpubAsync.ts Escape text placed in XML documents.">
     <h3>escape</h3>
-    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:65:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:178:1</code></p>
     <p>Escape text placed in XML documents.</p>
     
   </article><article class="item" data-search="escapeCharacter src/features/export/adapters/exportEpubAsync.ts Convert one XML-reserved character into its named entity.">
     <h3>escapeCharacter</h3>
-    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:70:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportEpubAsync.ts:183:1</code></p>
     <p>Convert one XML-reserved character into its named entity.</p>
     
   </article>
@@ -1286,33 +1445,123 @@
       <h2>src/features/export/adapters/exportPdfAsync.ts</h2>
       <article class="item" data-search="exportPdfAsync src/features/export/adapters/exportPdfAsync.ts Generate an A5 PDF using a maintained layout engine rather than handwritten PDF syntax.">
     <h3>exportPdfAsync</h3>
-    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:7:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:17:1</code></p>
     <p>Generate an A5 PDF using a maintained layout engine rather than handwritten PDF syntax.</p>
     
   </article><article class="item" data-search="createPdfDocument src/features/export/adapters/exportPdfAsync.ts Compose the document tree consumed by the PDF layout adapter.">
     <h3>createPdfDocument</h3>
-    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:18:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:28:1</code></p>
     <p>Compose the document tree consumed by the PDF layout adapter.</p>
     
   </article><article class="item" data-search="coverPage src/features/export/adapters/exportPdfAsync.ts Render the first PDF page from the book&#39;s publication metadata.">
     <h3>coverPage</h3>
-    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:41:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:80:1</code></p>
     <p>Render the first PDF page from the book&#39;s publication metadata.</p>
+    
+  </article><article class="item" data-search="contentsPage src/features/export/adapters/exportPdfAsync.ts Render an internal-link table of contents from canonical chapter order.">
+    <h3>contentsPage</h3>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:97:1</code></p>
+    <p>Render an internal-link table of contents from canonical chapter order.</p>
     
   </article><article class="item" data-search="chapterPages src/features/export/adapters/exportPdfAsync.ts Render one readable PDF page for each canonical chapter.">
     <h3>chapterPages</h3>
-    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:58:1</code></p>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:117:1</code></p>
     <p>Render one readable PDF page for each canonical chapter.</p>
+    
+  </article><article class="item" data-search="renderBlock src/features/export/adapters/exportPdfAsync.ts Map a shared semantic block into pagination-aware PDF primitives.">
+    <h3>renderBlock</h3>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:139:1</code></p>
+    <p>Map a shared semantic block into pagination-aware PDF primitives.</p>
+    
+  </article><article class="item" data-search="renderList src/features/export/adapters/exportPdfAsync.ts Keep every list item together while preserving its inline semantics.">
+    <h3>renderList</h3>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:169:1</code></p>
+    <p>Keep every list item together while preserving its inline semantics.</p>
+    
+  </article><article class="item" data-search="renderTable src/features/export/adapters/exportPdfAsync.ts Keep individual table rows together while allowing a table to flow across pages.">
+    <h3>renderTable</h3>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:189:1</code></p>
+    <p>Keep individual table rows together while allowing a table to flow across pages.</p>
+    
+  </article><article class="item" data-search="inlineNodes src/features/export/adapters/exportPdfAsync.ts Render formatted inline text and real PDF links from shared semantic nodes.">
+    <h3>inlineNodes</h3>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:214:1</code></p>
+    <p>Render formatted inline text and real PDF links from shared semantic nodes.</p>
+    
+  </article><article class="item" data-search="images src/features/export/adapters/exportPdfAsync.ts Render image nodes as visible publication media rather than alt-text substitutes.">
+    <h3>images</h3>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:237:1</code></p>
+    <p>Render image nodes as visible publication media rather than alt-text substitutes.</p>
+    
+  </article><article class="item" data-search="pageNumber src/features/export/adapters/exportPdfAsync.ts Render physical page numbers on every flowing book page.">
+    <h3>pageNumber</h3>
+    <p class="muted"><code>src/features/export/adapters/exportPdfAsync.ts:252:1</code></p>
+    <p>Render physical page numbers on every flowing book page.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-export-adapters-parsemarkdowndocument-ts" class="view" data-view="src/features/export/adapters/parseMarkdownDocument.ts" hidden>
+    <section class="panel">
+      <h2>src/features/export/adapters/parseMarkdownDocument.ts</h2>
+      <article class="item" data-search="parseMarkdownDocument src/features/export/adapters/parseMarkdownDocument.ts Parse editable Markdown once into the semantic document consumed by publication adapters.">
+    <h3>parseMarkdownDocument</h3>
+    <p class="muted"><code>src/features/export/adapters/parseMarkdownDocument.ts:24:1</code></p>
+    <p>Parse editable Markdown once into the semantic document consumed by publication adapters.</p>
+    
+  </article><article class="item" data-search="blockFromNode src/features/export/adapters/parseMarkdownDocument.ts Translate one supported Markdown block without flattening its publication semantics.">
+    <h3>blockFromNode</h3>
+    <p class="muted"><code>src/features/export/adapters/parseMarkdownDocument.ts:30:1</code></p>
+    <p>Translate one supported Markdown block without flattening its publication semantics.</p>
+    
+  </article><article class="item" data-search="blockChildren src/features/export/adapters/parseMarkdownDocument.ts Extract inline content from a list item&#39;s paragraph children.">
+    <h3>blockChildren</h3>
+    <p class="muted"><code>src/features/export/adapters/parseMarkdownDocument.ts:58:1</code></p>
+    <p>Extract inline content from a list item&#39;s paragraph children.</p>
+    
+  </article><article class="item" data-search="inlineFromNodes src/features/export/adapters/parseMarkdownDocument.ts Translate inline Markdown nodes while retaining formatting and destinations.">
+    <h3>inlineFromNodes</h3>
+    <p class="muted"><code>src/features/export/adapters/parseMarkdownDocument.ts:63:1</code></p>
+    <p>Translate inline Markdown nodes while retaining formatting and destinations.</p>
     
   </article>
     </section>
   </section><section id="view-src-features-export-adapters-rendermarkdownasxhtml-ts" class="view" data-view="src/features/export/adapters/renderMarkdownAsXhtml.ts" hidden>
     <section class="panel">
       <h2>src/features/export/adapters/renderMarkdownAsXhtml.ts</h2>
-      <article class="item" data-search="renderMarkdownAsXhtml src/features/export/adapters/renderMarkdownAsXhtml.ts Render Markdown through its AST so publication semantics are preserved as XHTML elements.">
+      <article class="item" data-search="renderMarkdownAsXhtml src/features/export/adapters/renderMarkdownAsXhtml.ts Render the shared semantic document as safe EPUB XHTML.">
     <h3>renderMarkdownAsXhtml</h3>
-    <p class="muted"><code>src/features/export/adapters/renderMarkdownAsXhtml.ts:9:1</code></p>
-    <p>Render Markdown through its AST so publication semantics are preserved as XHTML elements.</p>
+    <p class="muted"><code>src/features/export/adapters/renderMarkdownAsXhtml.ts:5:1</code></p>
+    <p>Render the shared semantic document as safe EPUB XHTML.</p>
+    
+  </article><article class="item" data-search="renderBlock src/features/export/adapters/renderMarkdownAsXhtml.ts Render one structural block using its corresponding XHTML element.">
+    <h3>renderBlock</h3>
+    <p class="muted"><code>src/features/export/adapters/renderMarkdownAsXhtml.ts:15:1</code></p>
+    <p>Render one structural block using its corresponding XHTML element.</p>
+    
+  </article><article class="item" data-search="inlines src/features/export/adapters/renderMarkdownAsXhtml.ts Render inline semantics while escaping literal author-provided text.">
+    <h3>inlines</h3>
+    <p class="muted"><code>src/features/export/adapters/renderMarkdownAsXhtml.ts:29:1</code></p>
+    <p>Render inline semantics while escaping literal author-provided text.</p>
+    
+  </article><article class="item" data-search="inline src/features/export/adapters/renderMarkdownAsXhtml.ts Render one inline semantic node.">
+    <h3>inline</h3>
+    <p class="muted"><code>src/features/export/adapters/renderMarkdownAsXhtml.ts:34:1</code></p>
+    <p>Render one inline semantic node.</p>
+    
+  </article><article class="item" data-search="escape src/features/export/adapters/renderMarkdownAsXhtml.ts Escape XML character data.">
+    <h3>escape</h3>
+    <p class="muted"><code>src/features/export/adapters/renderMarkdownAsXhtml.ts:54:1</code></p>
+    <p>Escape XML character data.</p>
+    
+  </article><article class="item" data-search="escapeCharacter src/features/export/adapters/renderMarkdownAsXhtml.ts Escape one XML-reserved character.">
+    <h3>escapeCharacter</h3>
+    <p class="muted"><code>src/features/export/adapters/renderMarkdownAsXhtml.ts:59:1</code></p>
+    <p>Escape one XML-reserved character.</p>
+    
+  </article><article class="item" data-search="attribute src/features/export/adapters/renderMarkdownAsXhtml.ts Escape a quoted XHTML attribute.">
+    <h3>attribute</h3>
+    <p class="muted"><code>src/features/export/adapters/renderMarkdownAsXhtml.ts:66:1</code></p>
+    <p>Escape a quoted XHTML attribute.</p>
     
   </article>
     </section>
@@ -1321,12 +1570,12 @@
       <h2>src/features/export/application/exportBookAsync.ts</h2>
       <article class="item" data-search="exportBookAsync src/features/export/application/exportBookAsync.ts Render the same canonical project to one or both publishable output formats.">
     <h3>exportBookAsync</h3>
-    <p class="muted"><code>src/features/export/application/exportBookAsync.ts:23:1</code></p>
+    <p class="muted"><code>src/features/export/application/exportBookAsync.ts:25:1</code></p>
     <p>Render the same canonical project to one or both publishable output formats.</p>
     
   </article><article class="item" data-search="slug src/features/export/application/exportBookAsync.ts Produce deterministic, filename-safe output names.">
     <h3>slug</h3>
-    <p class="muted"><code>src/features/export/application/exportBookAsync.ts:69:1</code></p>
+    <p class="muted"><code>src/features/export/application/exportBookAsync.ts:73:1</code></p>
     <p>Produce deterministic, filename-safe output names.</p>
     
   </article>
@@ -1336,7 +1585,7 @@
       <h2>src/features/export/composition/exportBook.ts</h2>
       <article class="item" data-search="exportBook src/features/export/composition/exportBook.ts Compose publication adapters around the export use case.">
     <h3>exportBook</h3>
-    <p class="muted"><code>src/features/export/composition/exportBook.ts:8:1</code></p>
+    <p class="muted"><code>src/features/export/composition/exportBook.ts:9:1</code></p>
     <p>Compose publication adapters around the export use case.</p>
     
   </article>
@@ -1346,7 +1595,7 @@
       <h2>src/features/import/adapters/importBookSourceAsync.ts</h2>
       <article class="item" data-search="importBookSourceAsync src/features/import/adapters/importBookSourceAsync.ts Import one supported source through its concrete format adapter.">
     <h3>importBookSourceAsync</h3>
-    <p class="muted"><code>src/features/import/adapters/importBookSourceAsync.ts:8:1</code></p>
+    <p class="muted"><code>src/features/import/adapters/importBookSourceAsync.ts:9:1</code></p>
     <p>Import one supported source through its concrete format adapter.</p>
     
   </article>
@@ -1381,27 +1630,32 @@
     
   </article><article class="item" data-search="textElement src/features/import/adapters/importEpubAsync.ts Extract decoded XML metadata from the package document.">
     <h3>textElement</h3>
-    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:127:1</code></p>
+    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:128:1</code></p>
     <p>Extract decoded XML metadata from the package document.</p>
     
   </article><article class="item" data-search="xmlDocument src/features/import/adapters/importEpubAsync.ts Parse XML while rejecting malformed package metadata before it reaches import policy.">
     <h3>xmlDocument</h3>
-    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:136:1</code></p>
+    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:135:1</code></p>
     <p>Parse XML while rejecting malformed package metadata before it reaches import policy.</p>
+    
+  </article><article class="item" data-search="xmlElements src/features/import/adapters/importEpubAsync.ts Convert xmldom&#39;s array-like result into typed XML elements.">
+    <h3>xmlElements</h3>
+    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:143:1</code></p>
+    <p>Convert xmldom&#39;s array-like result into typed XML elements.</p>
     
   </article><article class="item" data-search="resolveEpubPath src/features/import/adapters/importEpubAsync.ts Resolve an OPF-relative archive path without allowing traversal outside the EPUB.">
     <h3>resolveEpubPath</h3>
-    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:144:1</code></p>
+    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:164:1</code></p>
     <p>Resolve an OPF-relative archive path without allowing traversal outside the EPUB.</p>
     
   </article><article class="item" data-search="ensureChapterHeading src/features/import/adapters/importEpubAsync.ts Give spine documents without an H1 a stable editable chapter boundary.">
     <h3>ensureChapterHeading</h3>
-    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:152:1</code></p>
+    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:172:1</code></p>
     <p>Give spine documents without an H1 a stable editable chapter boundary.</p>
     
   </article><article class="item" data-search="isFileEntry src/features/import/adapters/importEpubAsync.ts Narrow ZIP metadata to entries that can yield archive content.">
     <h3>isFileEntry</h3>
-    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:159:1</code></p>
+    <p class="muted"><code>src/features/import/adapters/importEpubAsync.ts:179:1</code></p>
     <p>Narrow ZIP metadata to entries that can yield archive content.</p>
     
   </article>
@@ -1429,15 +1683,50 @@
   </section><section id="view-src-features-import-adapters-importpdfasync-ts" class="view" data-view="src/features/import/adapters/importPdfAsync.ts" hidden>
     <section class="panel">
       <h2>src/features/import/adapters/importPdfAsync.ts</h2>
-      <article class="item" data-search="importPdfAsync src/features/import/adapters/importPdfAsync.ts Extract selectable PDF text into editable Markdown, reporting unavoidable reconstruction loss.">
+      <article class="item" data-search="importPdfAsync src/features/import/adapters/importPdfAsync.ts Reconstruct editable PDF chapters from selectable text, retaining uncertainty where geometry is ambiguous.">
     <h3>importPdfAsync</h3>
-    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:9:1</code></p>
-    <p>Extract selectable PDF text into editable Markdown, reporting unavoidable reconstruction loss.</p>
+    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:18:1</code></p>
+    <p>Reconstruct editable PDF chapters from selectable text, retaining uncertainty where geometry is ambiguous.</p>
     
-  </article><article class="item" data-search="repairHyphenation src/features/import/adapters/importPdfAsync.ts Repair only clear line-break hyphenation while preserving intentional hyphens.">
-    <h3>repairHyphenation</h3>
-    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:51:1</code></p>
-    <p>Repair only clear line-break hyphenation while preserving intentional hyphens.</p>
+  </article><article class="item" data-search="pdfImportResult src/features/import/adapters/importPdfAsync.ts Attach explicit PDF reconstruction and metadata provenance to a normalized Markdown import.">
+    <h3>pdfImportResult</h3>
+    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:49:1</code></p>
+    <p>Attach explicit PDF reconstruction and metadata provenance to a normalized Markdown import.</p>
+    
+  </article><article class="item" data-search="metadataReport src/features/import/adapters/importPdfAsync.ts Report whether metadata came from trusted PDF fields or a lower-confidence visible-cover heuristic.">
+    <h3>metadataReport</h3>
+    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:86:1</code></p>
+    <p>Report whether metadata came from trusted PDF fields or a lower-confidence visible-cover heuristic.</p>
+    
+  </article><article class="item" data-search="pdfMetadataAsync src/features/import/adapters/importPdfAsync.ts Preserve PDF title and language metadata when the source provides trustworthy strings.">
+    <h3>pdfMetadataAsync</h3>
+    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:106:1</code></p>
+    <p>Preserve PDF title and language metadata when the source provides trustworthy strings.</p>
+    
+  </article><article class="item" data-search="metadataString src/features/import/adapters/importPdfAsync.ts Read one non-empty PDF metadata value without trusting an untyped metadata dictionary.">
+    <h3>metadataString</h3>
+    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:119:1</code></p>
+    <p>Read one non-empty PDF metadata value without trusting an untyped metadata dictionary.</p>
+    
+  </article><article class="item" data-search="pageLinesAsync src/features/import/adapters/importPdfAsync.ts Extract baseline-sorted page lines rather than joining every PDF fragment into one paragraph.">
+    <h3>pageLinesAsync</h3>
+    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:126:1</code></p>
+    <p>Extract baseline-sorted page lines rather than joining every PDF fragment into one paragraph.</p>
+    
+  </article><article class="item" data-search="groupFragments src/features/import/adapters/importPdfAsync.ts Join text fragments on the same visual baseline in left-to-right reading order.">
+    <h3>groupFragments</h3>
+    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:149:1</code></p>
+    <p>Join text fragments on the same visual baseline in left-to-right reading order.</p>
+    
+  </article><article class="item" data-search="removeRunningMatter src/features/import/adapters/importPdfAsync.ts Remove repeated text found at page edges on at least three different pages.">
+    <h3>removeRunningMatter</h3>
+    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:182:1</code></p>
+    <p>Remove repeated text found at page edges on at least three different pages.</p>
+    
+  </article><article class="item" data-search="normalize src/features/import/adapters/importPdfAsync.ts Normalize only for repeated-furniture comparison.">
+    <h3>normalize</h3>
+    <p class="muted"><code>src/features/import/adapters/importPdfAsync.ts:198:1</code></p>
+    <p>Normalize only for repeated-furniture comparison.</p>
     
   </article>
     </section>
@@ -1448,6 +1737,66 @@
     <h3>importXhtmlAsMarkdown</h3>
     <p class="muted"><code>src/features/import/adapters/importXhtmlAsMarkdown.ts:8:1</code></p>
     <p>Convert an EPUB XHTML content document into editable semantic Markdown through ASTs.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-import-adapters-reconstructpdfimport-test-ts" class="view" data-view="src/features/import/adapters/reconstructPdfImport.test.ts" hidden>
+    <section class="panel">
+      <h2>src/features/import/adapters/reconstructPdfImport.test.ts</h2>
+      <article class="item" data-search="fixtureLines src/features/import/adapters/reconstructPdfImport.test.ts Supply a rights-cleared, geometry-shaped regression fixture with every boundary used by PDF reconstruction.">
+    <h3>fixtureLines</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.test.ts:27:1</code></p>
+    <p>Supply a rights-cleared, geometry-shaped regression fixture with every boundary used by PDF reconstruction.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-features-import-adapters-reconstructpdfimport-ts" class="view" data-view="src/features/import/adapters/reconstructPdfImport.ts" hidden>
+    <section class="panel">
+      <h2>src/features/import/adapters/reconstructPdfImport.ts</h2>
+      <article class="item" data-search="reconstructPdfImport src/features/import/adapters/reconstructPdfImport.ts Reconstruct ordered editable sections and visible cover metadata from PDF text geometry.">
+    <h3>reconstructPdfImport</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.ts:14:1</code></p>
+    <p>Reconstruct ordered editable sections and visible cover metadata from PDF text geometry.</p>
+    
+  </article><article class="item" data-search="isChapterMarker src/features/import/adapters/reconstructPdfImport.ts Recognize spaced or unspaced visible German chapter labels.">
+    <h3>isChapterMarker</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.ts:46:1</code></p>
+    <p>Recognize spaced or unspaced visible German chapter labels.</p>
+    
+  </article><article class="item" data-search="chapterTitle src/features/import/adapters/reconstructPdfImport.ts Collect a chapter title from its large visible line following a chapter marker.">
+    <h3>chapterTitle</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.ts:51:1</code></p>
+    <p>Collect a chapter title from its large visible line following a chapter marker.</p>
+    
+  </article><article class="item" data-search="splitAppendix src/features/import/adapters/reconstructPdfImport.ts Separate appendix material from the final numbered chapter at explicit visible section labels.">
+    <h3>splitAppendix</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.ts:68:1</code></p>
+    <p>Separate appendix material from the final numbered chapter at explicit visible section labels.</p>
+    
+  </article><article class="item" data-search="appendixTitle src/features/import/adapters/reconstructPdfImport.ts Give recognized appendix labels stable human-readable project titles.">
+    <h3>appendixTitle</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.ts:95:1</code></p>
+    <p>Give recognized appendix labels stable human-readable project titles.</p>
+    
+  </article><article class="item" data-search="visibleAuthor src/features/import/adapters/reconstructPdfImport.ts Recover a plausible author only from the final title-cased line on the visible cover.">
+    <h3>visibleAuthor</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.ts:104:1</code></p>
+    <p>Recover a plausible author only from the final title-cased line on the visible cover.</p>
+    
+  </article><article class="item" data-search="isPersonName src/features/import/adapters/reconstructPdfImport.ts Avoid treating all-caps labels, headings, and sentences as a visible personal name.">
+    <h3>isPersonName</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.ts:114:1</code></p>
+    <p>Avoid treating all-caps labels, headings, and sentences as a visible personal name.</p>
+    
+  </article><article class="item" data-search="paragraphs src/features/import/adapters/reconstructPdfImport.ts Rebuild paragraphs from vertical spacing while repairing only clear line-break hyphenation.">
+    <h3>paragraphs</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.ts:119:1</code></p>
+    <p>Rebuild paragraphs from vertical spacing while repairing only clear line-break hyphenation.</p>
+    
+  </article><article class="item" data-search="repairHyphenation src/features/import/adapters/reconstructPdfImport.ts Repair only clear end-of-line word breaks from extracted selectable text.">
+    <h3>repairHyphenation</h3>
+    <p class="muted"><code>src/features/import/adapters/reconstructPdfImport.ts:136:1</code></p>
+    <p>Repair only clear end-of-line word breaks from extracted selectable text.</p>
     
   </article>
     </section>
@@ -1476,37 +1825,37 @@
       <h2>src/features/preview/application/previewBookAsync.ts</h2>
       <article class="item" data-search="previewBookAsync src/features/preview/application/previewBookAsync.ts Serve temporary actual EPUB and PDF output on loopback and rebuild after project changes.">
     <h3>previewBookAsync</h3>
-    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:17:1</code></p>
+    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:21:1</code></p>
     <p>Serve temporary actual EPUB and PDF output on loopback and rebuild after project changes.</p>
     
   </article><article class="item" data-search="createRebuildScheduler src/features/preview/application/previewBookAsync.ts Serialize debounced rebuilds so one source change cannot overlap or recursively trigger another.">
     <h3>createRebuildScheduler</h3>
-    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:46:1</code></p>
+    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:51:1</code></p>
     <p>Serialize debounced rebuilds so one source change cannot overlap or recursively trigger another.</p>
     
   </article><article class="item" data-search="previewResponseAsync src/features/preview/application/previewBookAsync.ts Serve the preview page, EPUB reader runtime, and real publication artifacts.">
     <h3>previewResponseAsync</h3>
-    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:66:1</code></p>
+    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:75:1</code></p>
     <p>Serve the preview page, EPUB reader runtime, and real publication artifacts.</p>
     
   </article><article class="item" data-search="previewPageResponse src/features/preview/application/previewBookAsync.ts Render a loopback-only reader that loads the generated EPUB, alongside the native PDF preview.">
     <h3>previewPageResponse</h3>
-    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:82:1</code></p>
+    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:101:1</code></p>
     <p>Render a loopback-only reader that loads the generated EPUB, alongside the native PDF preview.</p>
     
   </article><article class="item" data-search="findOutputAsync src/features/preview/application/previewBookAsync.ts Find an output selected by the deterministic exporter.">
     <h3>findOutputAsync</h3>
-    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:90:1</code></p>
+    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:145:1</code></p>
     <p>Find an output selected by the deterministic exporter.</p>
     
   </article><article class="item" data-search="rebuildPreviewAsync src/features/preview/application/previewBookAsync.ts Rebuild both real publication artifacts for a browser preview session.">
     <h3>rebuildPreviewAsync</h3>
-    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:97:1</code></p>
+    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:152:1</code></p>
     <p>Rebuild both real publication artifacts for a browser preview session.</p>
     
   </article><article class="item" data-search="waitForPreviewExitAsync src/features/preview/application/previewBookAsync.ts Hold the process open until the interactive preview receives an interrupt or termination signal.">
     <h3>waitForPreviewExitAsync</h3>
-    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:111:1</code></p>
+    <p class="muted"><code>src/features/preview/application/previewBookAsync.ts:166:1</code></p>
     <p>Hold the process open until the interactive preview receives an interrupt or termination signal.</p>
     
   </article>
