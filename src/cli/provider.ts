@@ -2,14 +2,15 @@ import { readFileSync } from 'node:fs';
 
 import type { AnkhRuntimeCommandProvider } from '@ankhorage/ankh';
 
+import { CAPABILITIES } from '../capabilities/index.js';
 import { runBookCliAsync } from './index.js';
 
 const commands = [
-  ['init', 'book.init', 'Create an editable book project.'],
-  ['import', 'book.import', 'Import PDF, EPUB, or Markdown.'],
-  ['preview', 'book.preview', 'Preview actual EPUB and PDF output locally.'],
-  ['export', 'book.export', 'Export EPUB and PDF.'],
-  ['validate', 'book.validate', 'Validate an editable book project.'],
+  ['init', CAPABILITIES[0]],
+  ['import', CAPABILITIES[1]],
+  ['preview', CAPABILITIES[2]],
+  ['export', CAPABILITIES[3]],
+  ['validate', CAPABILITIES[4]],
 ] as const;
 
 /*** Register the supported published Ankh provider instead of shadowing `ankh book`. */
@@ -17,15 +18,12 @@ const provider = {
   id: '@ankhorage/book',
   category: 'book',
   version: packageVersion(),
-  capabilities: commands.map(([_path, capability, summary]) => ({
-    id: capability,
-    owner: '@ankhorage/book',
-    access: ['invoke'],
-    binding: { kind: 'action', bindableAs: ['target'] },
-    label: summary,
-    description: summary,
+  capabilities: CAPABILITIES,
+  commands: commands.map(([path, capability]) => ({
+    path: [path],
+    capability: capability.id,
+    summary: capability.description,
   })),
-  commands: commands.map(([path, capability, summary]) => ({ path: [path], capability, summary })),
   handlers: commands.map(([path]) => ({
     path: [path],
     handler: async (request) => await runBookCliAsync([path, ...request.argv], request.context),
